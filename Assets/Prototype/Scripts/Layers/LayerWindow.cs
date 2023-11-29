@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Prototype.Scripts
+namespace Prototype.Scripts.Layers
 {
     public class LayerWindow : MonoBehaviour
     {

@@ -223,8 +223,9 @@ GameObject:
   m_Component:
   - component: {fileID: 395247510}
   - component: {fileID: 395247509}
+  - component: {fileID: 395247511}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,15 +238,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395247508}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8af13b0cf2cb1a47a88a991d5bd1a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConteinerScroll: {fileID: 1220244927}
-  InitialCountLayers: 40
-  CountLayerPool: 20
-  layerWindowPrefab: {fileID: 3286440699173641861, guid: 44d3daa1057778f409bb1d9999d2e2f4, type: 3}
+  View: {fileID: 395247511}
 --- !u!4 &395247510
 Transform:
   m_ObjectHideFlags: 0
@@ -261,6 +259,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &395247511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395247508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e6644d98514386986e1d4f5ad66666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrollContent: {fileID: 1220244927}
+  LayerWindowPrefab: {fileID: 3286440699173641861, guid: 44d3daa1057778f409bb1d9999d2e2f4, type: 3}
+  TaskWindowPrefab: {fileID: 0}
+  InitialCountLayers: 40
+  CountLayerPool: 20
+  CountTaskPool: 20
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

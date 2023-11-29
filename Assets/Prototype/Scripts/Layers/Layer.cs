@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using Prototype.Scripts.Layers.Tasks;
 
-namespace Prototype.Scripts
+namespace Prototype.Scripts.Layers
 {
     public class Layer
     {
@@ -10,10 +12,13 @@ namespace Prototype.Scripts
         public event Action<Layer> TurnedOn;
         public event Action<Layer> TurnedOff;
 
+        public List<Task> Tasks;
+
         public Layer(int initialPosition)
         {
             InitialPosition = initialPosition;
             IsActive = false;
+            Tasks = new List<Task>();
         }
 
         public void TurnOn()
@@ -26,6 +31,12 @@ namespace Prototype.Scripts
         {
             IsActive = false;
             TurnedOff?.Invoke(this);
+        }
+
+        public void AddTask(int startTime, int endTime)
+        {
+            var newTask = new Task(startTime, endTime);
+            Tasks.Add(newTask);
         }
     }
 }
