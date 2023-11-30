@@ -273,10 +273,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollContent: {fileID: 1220244927}
   LayerWindowPrefab: {fileID: 3286440699173641861, guid: 44d3daa1057778f409bb1d9999d2e2f4, type: 3}
-  TaskWindowPrefab: {fileID: 0}
-  InitialCountLayers: 40
+  TaskWindowPrefab: {fileID: 7126735010249304003, guid: 5926d5ce3684c6c45973b033927f6dd3, type: 3}
+  InitialCountLayers: 100
   CountLayerPool: 20
-  CountTaskPool: 20
+  CountTaskPool: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +902,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 100
   m_Viewport: {fileID: 118667401}
   m_HorizontalScrollbar: {fileID: 1395528823}
   m_VerticalScrollbar: {fileID: 1046789453}
