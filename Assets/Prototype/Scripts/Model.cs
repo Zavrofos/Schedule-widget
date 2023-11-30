@@ -10,7 +10,8 @@ namespace Prototype.Scripts
         public Pool<TaskWindow> PoolTaskWindows;
         public readonly LayersModel LayersModel;
         public event Action Initialized;
-        public event Action ContentScrollPositionChanged;
+        public event Action ContentScrollPositionChangedVertical;
+        public event Action ContentScrollPositionChangedHorizontal;
 
         public Model()
         {
@@ -20,12 +21,18 @@ namespace Prototype.Scripts
         public void Initialize()
         {
             Initialized?.Invoke();
-            ContentScrollPositionChanged?.Invoke();
+            ContentScrollPositionChangedVertical?.Invoke();
+            ContentScrollPositionChangedHorizontal?.Invoke();
         }
 
-        public void ChangeContentScrollPosition()
+        public void ChangeContentScrollPositionVertical()
         {
-            ContentScrollPositionChanged?.Invoke();
+            ContentScrollPositionChangedVertical?.Invoke();
+        }
+        
+        public void ChangeContentScrollPositionHorizontal()
+        {
+            ContentScrollPositionChangedHorizontal?.Invoke();
         }
     }
 }
