@@ -1,4 +1,5 @@
 ﻿using Prototype.Scripts.Layers;
+using Prototype.Scripts.Layers.Tasks;
 using UnityEngine;
 
 namespace Prototype.Scripts
@@ -27,6 +28,11 @@ namespace Prototype.Scripts
         private void OnInitialize()
         {
             _model.PoolLayerWindows = new Pool<LayerWindow>(_view.LayerWindowPrefab, _view.ScrollContent, _view.CountLayerPool);
+
+            foreach (var layerWindow in _model.PoolLayerWindows.PoolObj)
+            {
+                layerWindow.PoolTaskWindows = new Pool<TaskWindow>(_view.TaskWindowPrefab, layerWindow.RectTransform, _view.CountTaskPool);
+            }
             
             float newHeight = _view.InitialCountLayers * 100;
             _view.ScrollContent.sizeDelta = new Vector2(_view.ScrollContent.sizeDelta.x, newHeight);
