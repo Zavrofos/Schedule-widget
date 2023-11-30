@@ -27,9 +27,19 @@ namespace Prototype.Scripts.Layers
 
         private void OnTurnOff(Layer layer)
         {
-            layer.LayerWindow.RectTransform.anchoredPosition = Vector3.zero;
+            foreach (var task in layer.Tasks)
+            {
+                if (task.IsActive)
+                {
+                    task.TurnOff();
+                }
+            }
+            
+            layer.LayerWindow.RectTransform.anchoredPosition = Vector2.zero;
             layer.LayerWindow.gameObject.SetActive(false);
             layer.LayerWindow = null;
+
+            _model.LayersModel.IncludedLayers.Remove(layer);
         }
     }
 }

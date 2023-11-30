@@ -7,13 +7,13 @@ namespace Prototype.Scripts
     {
         public T Prefab;
         public Transform Container;
-        private List<T> _pool;
+        public readonly List<T> PoolObj;
 
         public Pool(T prefab, Transform container, int initialCount)
         {
             Prefab = prefab;
             Container = container;
-            _pool = new List<T>();
+            PoolObj = new List<T>();
             CreatePool(initialCount);
         }
 
@@ -29,13 +29,13 @@ namespace Prototype.Scripts
         {
             var el = GameObject.Instantiate(Prefab, Container);
             el.gameObject.SetActive(isActive);
-            _pool.Add(el);
+            PoolObj.Add(el);
             return el;
         }
 
         private bool HasFreeElement(out T element)
         {
-            foreach (var mono in _pool)
+            foreach (var mono in PoolObj)
             {
                 if (!mono.gameObject.activeInHierarchy)
                 {
