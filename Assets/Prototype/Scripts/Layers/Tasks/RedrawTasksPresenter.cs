@@ -32,7 +32,7 @@ namespace Prototype.Scripts.Layers.Tasks
                     float sizeTask = task.EndTime - task.StartTime;
                     float positionTask = task.StartTime + (sizeTask / 2);
 
-                    if (positionTask > Mathf.Abs(_view.ScrollContent.anchoredPosition.x) &&
+                    if (positionTask > Mathf.Abs(_view.ScrollContent.anchoredPosition.x) - 200 &&
                         positionTask < Mathf.Abs(_view.ScrollContent.anchoredPosition.x) + 2000)
                     {
                         if (!task.IsActive)
