@@ -53,6 +53,7 @@ namespace Prototype.Scripts.Layers.Tasks
                 }
             }
 
+            contentScrollSizeX -= 1700;
             _view.ScrollContent.sizeDelta = new Vector2(contentScrollSizeX, _view.ScrollContent.sizeDelta.y);
         }
     }
