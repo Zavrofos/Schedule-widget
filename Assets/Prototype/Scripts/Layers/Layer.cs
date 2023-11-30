@@ -13,6 +13,7 @@ namespace Prototype.Scripts.Layers
         public event Action<Layer> TurnedOff;
 
         public List<Task> Tasks;
+        public event Action<int, int> AddedTask;
 
         public Layer(int initialPosition)
         {
@@ -35,8 +36,7 @@ namespace Prototype.Scripts.Layers
 
         public void AddTask(int startTime, int endTime)
         {
-            var newTask = new Task(startTime, endTime);
-            Tasks.Add(newTask);
+            AddedTask?.Invoke(startTime, endTime);
         }
     }
 }

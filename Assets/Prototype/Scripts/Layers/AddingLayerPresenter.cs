@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Prototype.Scripts.Layers.Tasks;
 
 namespace Prototype.Scripts.Layers
 {
@@ -39,7 +40,8 @@ namespace Prototype.Scripts.Layers
             List<IPresenter> presenters = new List<IPresenter>()
             {
                 new TurningOnLayerPresenter(_model, newLayer, _view),
-                new TurningOffLayerPresenter(_model, newLayer, _view)
+                new TurningOffLayerPresenter(_model, newLayer, _view),
+                new AddingTasksPresenter(_model, newLayer, _view)
             };
 
             foreach (var presenter in presenters)
