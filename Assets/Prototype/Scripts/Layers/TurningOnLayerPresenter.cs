@@ -25,15 +25,15 @@ namespace Prototype.Scripts.Layers
             _layer.TurnedOn += OnTurnOn;
         }
 
-        private void OnTurnOn(Layer layer)
+        private void OnTurnOn()
         {
             LayerWindow layerWindow = _model.PoolLayerWindows.GetFreeElement();
             var anchoredPosition = layerWindow.RectTransform.anchoredPosition;
-            anchoredPosition = new Vector3(0, -layer.InitialPosition, 0);
+            anchoredPosition = new Vector3(0, -_layer.InitialPosition, 0);
             layerWindow.RectTransform.anchoredPosition = anchoredPosition;
-            layer.LayerWindow = layerWindow;
+            _layer.LayerWindow = layerWindow;
             
-            _model.LayersModel.IncludedLayers.Add(layer);
+            _model.LayersModel.IncludedLayers.Add(_layer);
         }
     }
 }

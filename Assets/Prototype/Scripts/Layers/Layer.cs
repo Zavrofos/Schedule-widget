@@ -9,8 +9,8 @@ namespace Prototype.Scripts.Layers
         public readonly int InitialPosition;
         public bool IsActive;
         public LayerWindow LayerWindow;
-        public event Action<Layer> TurnedOn;
-        public event Action<Layer> TurnedOff;
+        public event Action TurnedOn;
+        public event Action TurnedOff;
 
         public List<Task> Tasks;
         public event Action<int, int> AddedTask;
@@ -25,13 +25,13 @@ namespace Prototype.Scripts.Layers
         public void TurnOn()
         {
             IsActive = true;
-            TurnedOn?.Invoke(this);
+            TurnedOn?.Invoke();
         }
 
         public void TurnOff()
         {
             IsActive = false;
-            TurnedOff?.Invoke(this);
+            TurnedOff?.Invoke();
         }
 
         public void AddTask(int startTime, int endTime)

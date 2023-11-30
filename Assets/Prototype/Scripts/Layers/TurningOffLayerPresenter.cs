@@ -25,9 +25,9 @@ namespace Prototype.Scripts.Layers
             _layer.TurnedOff += OnTurnOff;
         }
 
-        private void OnTurnOff(Layer layer)
+        private void OnTurnOff()
         {
-            foreach (var task in layer.Tasks)
+            foreach (var task in _layer.Tasks)
             {
                 if (task.IsActive)
                 {
@@ -35,11 +35,11 @@ namespace Prototype.Scripts.Layers
                 }
             }
             
-            layer.LayerWindow.RectTransform.anchoredPosition = Vector2.zero;
-            layer.LayerWindow.gameObject.SetActive(false);
-            layer.LayerWindow = null;
+            _layer.LayerWindow.RectTransform.anchoredPosition = Vector2.zero;
+            _layer.LayerWindow.gameObject.SetActive(false);
+            _layer.LayerWindow = null;
 
-            _model.LayersModel.IncludedLayers.Remove(layer);
+            _model.LayersModel.IncludedLayers.Remove(_layer);
         }
     }
 }
