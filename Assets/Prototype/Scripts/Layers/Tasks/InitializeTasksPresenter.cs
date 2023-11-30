@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Prototype.Scripts.TimeScaleDir;
+using UnityEngine;
 
 namespace Prototype.Scripts.Layers.Tasks
 {
@@ -52,9 +53,22 @@ namespace Prototype.Scripts.Layers.Tasks
                     layer.AddTask(startTime, endTime);
                 }
             }
+            
+            _view.ScrollContent.sizeDelta = new Vector2(contentScrollSizeX - 1700, _view.ScrollContent.sizeDelta.y);
+            
+            
+            
+            // пока здесь
+            _view.TimeScaleContent.sizeDelta = new Vector2(contentScrollSizeX - 1700, _view.TimeScaleContent.sizeDelta.y);
+            int countPartOfTimeScale = ((100 - (contentScrollSizeX % 100)) + contentScrollSizeX) / 100;
 
-            contentScrollSizeX -= 1700;
-            _view.ScrollContent.sizeDelta = new Vector2(contentScrollSizeX, _view.ScrollContent.sizeDelta.y);
+            for (int i = 0; i < countPartOfTimeScale; i++)
+            {
+                PartOfTimeScale partOfTimeScale =
+                    GameObject.Instantiate(_view.PartOfTimeScalePrefab, _view.TimeScaleContent);
+                partOfTimeScale.PartOfTimeText.text = (i * 10).ToString();
+            }
+            // пока здесь
         }
     }
 }
