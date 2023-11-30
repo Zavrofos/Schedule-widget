@@ -71,7 +71,7 @@
       <updated>1701257845771</updated>
       <workItem from="1701257853312" duration="15134000" />
       <workItem from="1701278871462" duration="8903000" />
-      <workItem from="1701326892926" duration="13176000" />
+      <workItem from="1701326892926" duration="15021000" />
     </task>
     <servers />
   </component>
@@ -83,24 +83,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Prototype/Scripts/Layers/CheckPositionContentScrollUpdater.cs</url>
-          <line>26</line>
-          <properties documentPath="C:\Nikolay\Unity C#\Repositories\Schedule-widget\Assets\Prototype\Scripts\Layers\CheckPositionContentScrollUpdater.cs" initialLine="26" containingFunctionPresentation="method 'Update'">
-            <startOffsets>
-              <option value="982" />
-            </startOffsets>
-            <endOffsets>
-              <option value="983" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

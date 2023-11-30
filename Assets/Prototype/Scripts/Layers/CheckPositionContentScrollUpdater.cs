@@ -15,18 +15,22 @@ namespace Prototype.Scripts.Layers
             _view = view;
         }
 
+
+
         public void Update(float deltaTime)
         {
             if (Mathf.Abs(_currentPositionContentVertical - _view.ScrollContent.anchoredPosition.y) > 100)
             {
                 _model.ChangeContentScrollPositionVertical();
-                _currentPositionContentVertical = _view.ScrollContent.anchoredPosition.y - _view.ScrollContent.anchoredPosition.y % 100;
+                _currentPositionContentVertical = _view.ScrollContent.anchoredPosition.y -
+                                                  _view.ScrollContent.anchoredPosition.y % 100;
             }
-            
-            if (Mathf.Abs(_currentLeftBoardValue - Mathf.Abs(_view.ScrollContent.anchoredPosition.x)) > 100 )
+
+            if (Mathf.Abs(_currentLeftBoardValue - Mathf.Abs(_view.ScrollContent.anchoredPosition.x)) > 100)
             {
                 _model.ChangeContentScrollPositionHorizontal();
-                _currentLeftBoardValue = Mathf.Abs(_view.ScrollContent.sizeDelta.x) - Mathf.Abs(_view.ScrollContent.sizeDelta.x) % 100;
+                _currentLeftBoardValue = Mathf.Abs(_view.ScrollContent.anchoredPosition.x) -
+                                         Mathf.Abs(_view.ScrollContent.anchoredPosition.x) % 100;
             }
         }
     }
