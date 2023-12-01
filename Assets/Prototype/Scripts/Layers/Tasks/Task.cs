@@ -7,6 +7,7 @@ namespace Prototype.Scripts.Layers.Tasks
         public readonly int StartTime;
         public readonly int EndTime;
         public bool IsActive;
+        public StateTask CurrentState;
         public readonly Layer ParentLayer;
         public TaskWindow TaskWindow;
         public event Action TurnedOn;
@@ -18,6 +19,7 @@ namespace Prototype.Scripts.Layers.Tasks
             EndTime = endTime;
             ParentLayer = parentlayer;
             IsActive = false;
+            CurrentState = StateTask.Pending;
         }
 
         public void TurnOn()

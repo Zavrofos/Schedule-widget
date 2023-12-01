@@ -503,6 +503,9 @@ MonoBehaviour:
   TaskWindowPrefab: {fileID: 7126735010249304003, guid: 5926d5ce3684c6c45973b033927f6dd3, type: 3}
   PartOfTimeScalePrefab: {fileID: 4996807219911778608, guid: df45e9d65b7b0b945b573a8017014223, type: 3}
   TimeLine: {fileID: 135461088}
+  PendingColorTask: {r: 1, g: 0.8745098, b: 0.28627452, a: 0.5882353}
+  CompletedColorTask: {r: 0.3066038, g: 1, b: 0.38599652, a: 1}
+  JeopardyColorTask: {r: 1, g: 0.16509432, b: 0.16509432, a: 1}
   InitialCountLayers: 100
   CountLayerPool: 40
   CountTaskPool: 20

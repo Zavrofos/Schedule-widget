@@ -16,6 +16,10 @@ namespace Prototype.Scripts
         public TaskWindow TaskWindowPrefab;
         public PartOfTimeScale PartOfTimeScalePrefab;
         public RectTransform TimeLine;
+
+        public Color PendingColorTask;
+        public Color CompletedColorTask;
+        public Color JeopardyColorTask;
         
         public int InitialCountLayers;
         public int CountLayerPool;

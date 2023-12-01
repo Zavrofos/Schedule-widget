@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Prototype.Scripts.Layers.Tasks;
+using UnityEngine;
 
 namespace Prototype.Scripts.TimeLine
 {
@@ -30,6 +31,31 @@ namespace Prototype.Scripts.TimeLine
             
             _view.TimeLineContent.sizeDelta = new Vector2(sizeX, sizeY);
             _view.TimeLine.anchoredPosition = new Vector2(Random.Range(0, sizeX), 0);
+
+            foreach (var layer in _model.LayersModel.Layers)
+            {
+                foreach (var task in layer.Tasks)
+                {
+                    if (task.EndTime < _view.TimeLine.anchoredPosition.x)
+                    {
+                        int completedChance = Random.Range(70, 100);
+                        int jeopardyChance = Random.Range(0, 100);
+            
+                        if (jeopardyChance > completedChance)
+                        {
+                            task.CurrentState = StateTask.Jeopardy;
+                        }
+                        else
+                        {
+                            task.CurrentState = StateTask.Completed;
+                        }
+                    }
+                    else
+                    {
+                        task.CurrentState = StateTask.Pending;
+                    }
+                }
+            }
         }
     }
 }

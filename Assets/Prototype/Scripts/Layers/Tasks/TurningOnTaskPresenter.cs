@@ -29,6 +29,19 @@ namespace Prototype.Scripts.Layers.Tasks
         {
             TaskWindow taskWindow = _task.ParentLayer.LayerWindow.PoolTaskWindows.GetFreeElement();
             
+            if (_task.CurrentState == StateTask.Pending)
+            {
+                taskWindow.Image.color = _view.PendingColorTask;
+            }
+            else if (_task.CurrentState == StateTask.Completed)
+            {
+                taskWindow.Image.color = _view.CompletedColorTask;
+            }
+            else if (_task.CurrentState == StateTask.Jeopardy)
+            {
+                taskWindow.Image.color = _view.JeopardyColorTask;
+            }
+            
             int sizeX = _task.EndTime - _task.StartTime;
             float positionX = _task.StartTime + (sizeX / 2);
 
