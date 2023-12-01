@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Prototype.Scripts.Layers;
 using Prototype.Scripts.Layers.Tasks;
+using Prototype.Scripts.TimeLine;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -25,7 +26,8 @@ namespace Prototype.Scripts
                 new AddingLayerPresenter(Model, View),
                 new RedrawLayersPresenter(Model, View),
                 new InitializeTasksPresenter(Model, View),
-                new RedrawTasksPresenter(Model, View)
+                new RedrawTasksPresenter(Model, View),
+                new InitializeTimeLinePresenter(Model, View)
             };
 
             Updaters = new List<IUpdater>()

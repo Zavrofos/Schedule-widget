@@ -2,6 +2,7 @@
 using Prototype.Scripts.Layers.Tasks;
 using Prototype.Scripts.TimeScaleDir;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Prototype.Scripts
 {
@@ -9,10 +10,12 @@ namespace Prototype.Scripts
     {
         public RectTransform ScrollContent;
         public RectTransform TimeScaleContent;
-        
+        public RectTransform TimeLineContent;
+
         public LayerWindow LayerWindowPrefab;
         public TaskWindow TaskWindowPrefab;
         public PartOfTimeScale PartOfTimeScalePrefab;
+        public RectTransform TimeLine;
         
         public int InitialCountLayers;
         public int CountLayerPool;

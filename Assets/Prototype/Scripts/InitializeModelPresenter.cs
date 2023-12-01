@@ -36,7 +36,7 @@ namespace Prototype.Scripts
             
             float newHeight = _view.InitialCountLayers * 100;
             _view.ScrollContent.sizeDelta = new Vector2(_view.ScrollContent.sizeDelta.x, newHeight);
-            
+
             for (int i = 0; i < _view.InitialCountLayers; i++)
             {
                 _model.LayersModel.Addlayer();

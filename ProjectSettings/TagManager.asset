@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI TimeLine
+    uniqueID: 3886287975
+    locked: 0
