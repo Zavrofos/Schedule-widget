@@ -32,6 +32,8 @@ namespace Prototype.Scripts.TimeLine
             _view.TimeLineContent.sizeDelta = new Vector2(sizeX, sizeY);
             _view.TimeLine.anchoredPosition = new Vector2(Random.Range(0, sizeX), 0);
 
+            
+            
             foreach (var layer in _model.LayersModel.Layers)
             {
                 foreach (var task in layer.Tasks)
@@ -44,18 +46,25 @@ namespace Prototype.Scripts.TimeLine
                         if (jeopardyChance > completedChance)
                         {
                             task.CurrentState = StateTask.Jeopardy;
+                            _model.JeopardyCount++;
                         }
                         else
                         {
                             task.CurrentState = StateTask.Completed;
+                            _model.CompletedCount++;
                         }
                     }
                     else
                     {
                         task.CurrentState = StateTask.Pending;
+                        _model.PendingCount++;
                     }
                 }
             }
+
+            _view.PendingCountText.text = _model.PendingCount.ToString();
+            _view.JeopardyCountText.text = _model.JeopardyCount.ToString();
+            _view.CompletedCountText.text = _model.CompletedCount.ToString();
         }
     }
 }

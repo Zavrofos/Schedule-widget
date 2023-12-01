@@ -13,6 +13,10 @@ namespace Prototype.Scripts
         public event Action ContentScrollPositionChangedVertical;
         public event Action ContentScrollPositionChangedHorizontal;
 
+        public int PendingCount;
+        public int JeopardyCount;
+        public int CompletedCount;
+
         public Model()
         {
             LayersModel = new LayersModel();

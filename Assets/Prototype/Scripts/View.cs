@@ -1,6 +1,7 @@
 ﻿using Prototype.Scripts.Layers;
 using Prototype.Scripts.Layers.Tasks;
 using Prototype.Scripts.TimeScaleDir;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,10 @@ namespace Prototype.Scripts
         public Color PendingColorTask;
         public Color CompletedColorTask;
         public Color JeopardyColorTask;
+
+        public TMP_Text PendingCountText;
+        public TMP_Text JeopardyCountText;
+        public TMP_Text CompletedCountText;
         
         public int InitialCountLayers;
         public int CountLayerPool;
