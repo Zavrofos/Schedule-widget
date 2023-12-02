@@ -19,11 +19,13 @@ namespace Prototype.Scripts.Layers
         public void Subscribe()
         {
             _model.LayersModel.AddedLayer += OnAddNewLayer;
+            _model.LayersModel.UnsubscribedLayerPresenters += UnsubscribeLayerPresentersPresenters;
         }
 
         public void Unsubscribe()
         {
             _model.LayersModel.AddedLayer -= OnAddNewLayer;
+            _model.LayersModel.UnsubscribedLayerPresenters -= UnsubscribeLayerPresentersPresenters;
         }
 
         private void OnAddNewLayer()
@@ -50,6 +52,16 @@ namespace Prototype.Scripts.Layers
             }
             
             LayersPresenters.Add(newLayer, presenters);
+        }
+
+        private void UnsubscribeLayerPresentersPresenters(Layer layer)
+        {
+            foreach (var presenters in LayersPresenters[layer])
+            {
+               presenters.Unsubscribe();
+            }
+
+            LayersPresenters.Remove(layer);
         }
     }
 }

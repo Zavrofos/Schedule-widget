@@ -7,8 +7,8 @@ namespace Prototype.Scripts
     public class Model
     {
         public Pool<LayerWindow> PoolLayerWindows;
-        public Pool<TaskWindow> PoolTaskWindows;
-        public readonly LayersModel LayersModel;
+        public LayersModel LayersModel;
+        
         public event Action Initialized;
         public event Action ContentScrollPositionChangedVertical;
         public event Action ContentScrollPositionChangedHorizontal;

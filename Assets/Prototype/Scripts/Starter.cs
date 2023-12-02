@@ -5,6 +5,7 @@ using Prototype.Scripts.Layers.Tasks;
 using Prototype.Scripts.TimeLine;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Prototype.Scripts
 {
@@ -27,7 +28,8 @@ namespace Prototype.Scripts
                 new RedrawLayersPresenter(Model, View),
                 new InitializeTasksPresenter(Model, View),
                 new RedrawTasksPresenter(Model, View),
-                new InitializeTimeLinePresenter(Model, View)
+                new InitializeTimeLinePresenter(Model, View),
+                new GeneratePresenter(Model, View)
             };
 
             Updaters = new List<IUpdater>()

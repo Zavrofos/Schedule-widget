@@ -51,10 +51,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="16968">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="21320">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="16968" />
+      <option name="pid" value="21320" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -73,7 +73,7 @@
       <workItem from="1701257853312" duration="15134000" />
       <workItem from="1701278871462" duration="8903000" />
       <workItem from="1701326892926" duration="15021000" />
-      <workItem from="1701425581604" duration="7425000" />
+      <workItem from="1701425581604" duration="18782000" />
     </task>
     <servers />
   </component>

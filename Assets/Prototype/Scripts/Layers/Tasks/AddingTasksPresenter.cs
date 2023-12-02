@@ -20,11 +20,14 @@ namespace Prototype.Scripts.Layers.Tasks
         public void Subscribe()
         {
             _layer.AddedTask += OnAddTask;
+            _layer.UnsubscribedTaskPresenters += UnsubscribeTaskPresentersPresenters;
+
         }
 
         public void Unsubscribe()
         {
-            _layer.AddedTask += OnAddTask;
+            _layer.AddedTask -= OnAddTask;
+            _layer.UnsubscribedTaskPresenters -= UnsubscribeTaskPresentersPresenters;
         }
 
         private void OnAddTask(int startTime, int endTime)
@@ -45,6 +48,16 @@ namespace Prototype.Scripts.Layers.Tasks
             TasksPresenters.Add(newTask, presenters);
             
             _layer.Tasks.Add(newTask);
+        }
+
+        private void UnsubscribeTaskPresentersPresenters(Task task)
+        {
+            foreach (var presenter in TasksPresenters[task])
+            {
+                presenter.Unsubscribe();
+            }
+
+            TasksPresenters.Remove(task);
         }
     }
 }

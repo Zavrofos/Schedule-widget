@@ -5,9 +5,10 @@ namespace Prototype.Scripts.Layers
 {
     public class LayersModel
     {
-        public readonly List<Layer> Layers;
-        public readonly List<Layer> IncludedLayers;
+        public List<Layer> Layers;
+        public List<Layer> IncludedLayers;
         public event Action AddedLayer;
+        public event Action<Layer> UnsubscribedLayerPresenters;
 
         public LayersModel()
         {
@@ -18,6 +19,11 @@ namespace Prototype.Scripts.Layers
         public void Addlayer()
         {
             AddedLayer?.Invoke();
+        }
+
+        public void UnsubscribeLayerPresenters(Layer layer)
+        {
+            UnsubscribedLayerPresenters?.Invoke(layer);
         }
     }
 }

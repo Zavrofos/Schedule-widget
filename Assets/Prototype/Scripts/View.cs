@@ -17,6 +17,7 @@ namespace Prototype.Scripts
         public TaskWindow TaskWindowPrefab;
         public PartOfTimeScale PartOfTimeScalePrefab;
         public RectTransform TimeLine;
+        public Button GenerateButton;
 
         public Color PendingColorTask;
         public Color CompletedColorTask;

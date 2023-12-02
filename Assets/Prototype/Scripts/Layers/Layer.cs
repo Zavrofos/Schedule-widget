@@ -14,6 +14,7 @@ namespace Prototype.Scripts.Layers
 
         public List<Task> Tasks;
         public event Action<int, int> AddedTask;
+        public event Action<Task> UnsubscribedTaskPresenters;
 
         public Layer(int initialPosition)
         {
@@ -37,6 +38,11 @@ namespace Prototype.Scripts.Layers
         public void AddTask(int startTime, int endTime)
         {
             AddedTask?.Invoke(startTime, endTime);
+        }
+
+        public void UnsubscribeTaskPresenters(Task task)
+        {
+            UnsubscribedTaskPresenters?.Invoke(task);
         }
     }
 }

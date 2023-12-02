@@ -40,7 +40,7 @@ namespace Prototype.Scripts.TimeLine
                 {
                     if (task.EndTime < _view.TimeLine.anchoredPosition.x)
                     {
-                        int completedChance = Random.Range(70, 100);
+                        int completedChance = Random.Range(90, 100);
                         int jeopardyChance = Random.Range(0, 100);
             
                         if (jeopardyChance > completedChance)
