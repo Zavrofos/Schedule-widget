@@ -9,28 +9,28 @@ namespace Prototype.Scripts.Layers
         public readonly float InitialPosition;
         public bool IsActive;
         public List<Task> Tasks;
-        
+        public Dictionary<Task, TaskWindow> IncludedTasks;
+
         public event Action TurnedOn;
         public event Action TurnedOff;
         public event Action<int, int> AddedTask;
-        public event Action<Task> UnsubscribedTaskPresenters;
+        public event Action<Task> RemovedTask;
 
         public Layer(float initialPosition)
         {
             InitialPosition = initialPosition;
             IsActive = false;
             Tasks = new List<Task>();
+            IncludedTasks = new Dictionary<Task, TaskWindow>();
         }
 
         public void TurnOn()
         {
-            IsActive = true;
             TurnedOn?.Invoke();
         }
 
         public void TurnOff()
         {
-            IsActive = false;
             TurnedOff?.Invoke();
         }
 
@@ -39,9 +39,9 @@ namespace Prototype.Scripts.Layers
             AddedTask?.Invoke(startTime, endTime);
         }
 
-        public void UnsubscribeTaskPresenters(Task task)
+        public void RemoveTask(Task task)
         {
-            UnsubscribedTaskPresenters?.Invoke(task);
+            RemovedTask?.Invoke(task);
         }
     }
 }

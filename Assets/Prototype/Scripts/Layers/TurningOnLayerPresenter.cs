@@ -32,6 +32,7 @@ namespace Prototype.Scripts.Layers
             anchoredPosition = new Vector3(0, -_layer.InitialPosition, 0);
             layerWindow.RectTransform.anchoredPosition = anchoredPosition;
 
+            _layer.IsActive = true;
             _model.LayersModel.IncludedLayers.Add(_layer, layerWindow);
         }
     }
