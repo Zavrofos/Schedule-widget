@@ -11,7 +11,7 @@ namespace Prototype.Scripts.Layers
         public List<Layer> IncludedLayers;
         
         public event Action AddedLayer;
-        public event Action<Layer> UnsubscribedLayerPresenters;
+        public event Action<Layer> RemovedLayer;
 
         public LayersModel()
         {
@@ -24,9 +24,9 @@ namespace Prototype.Scripts.Layers
             AddedLayer?.Invoke();
         }
 
-        public void UnsubscribeLayerPresenters(Layer layer)
+        public void RemoveLayer(Layer layer)
         {
-            UnsubscribedLayerPresenters?.Invoke(layer);
+            RemovedLayer?.Invoke(layer);
         }
     }
 }

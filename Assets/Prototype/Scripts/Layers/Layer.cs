@@ -6,17 +6,17 @@ namespace Prototype.Scripts.Layers
 {
     public class Layer
     {
-        public readonly int InitialPosition;
-        public bool IsActive;
+        public readonly float InitialPosition;
         public LayerWindow LayerWindow;
+        public bool IsActive;
+        public List<Task> Tasks;
+        
         public event Action TurnedOn;
         public event Action TurnedOff;
-
-        public List<Task> Tasks;
         public event Action<int, int> AddedTask;
         public event Action<Task> UnsubscribedTaskPresenters;
 
-        public Layer(int initialPosition)
+        public Layer(float initialPosition)
         {
             InitialPosition = initialPosition;
             IsActive = false;

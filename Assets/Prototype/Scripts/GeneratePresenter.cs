@@ -27,6 +27,7 @@ namespace Prototype.Scripts
 
         private void OnGenerate()
         {
+            List<Layer> layersToRemove = new List<Layer>();
             foreach (var layer in _model.LayersModel.Layers)
             {
                 foreach (var task in layer.Tasks)
@@ -34,17 +35,19 @@ namespace Prototype.Scripts
                     layer.UnsubscribeTaskPresenters(task);
                 }
                 layer.Tasks.Clear();
-                _model.LayersModel.UnsubscribeLayerPresenters(layer);
+                layersToRemove.Add(layer);
+            }
+
+            foreach (var layer in layersToRemove)
+            {
+                _model.LayersModel.RemoveLayer(layer);
             }
             
             foreach (var layerWindow in _model.LayersModel.PoolLayerWindows.PoolObj)
             {
                 GameObject.Destroy(layerWindow.gameObject);
             }
-            
-            _model.LayersModel.Layers.Clear();
-            _model.LayersModel.IncludedLayers.Clear();
-            
+
             _model.PendingCount = 0;
             _model.JeopardyCount = 0;
             _model.CompletedCount = 0;
