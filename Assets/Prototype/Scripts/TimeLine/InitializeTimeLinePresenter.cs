@@ -46,25 +46,25 @@ namespace Prototype.Scripts.TimeLine
                         if (jeopardyChance > completedChance)
                         {
                             task.CurrentState = StateTask.Jeopardy;
-                            _model.JeopardyCount++;
+                            _model.TasksStatusModel.JeopardyCount++;
                         }
                         else
                         {
                             task.CurrentState = StateTask.Completed;
-                            _model.CompletedCount++;
+                            _model.TasksStatusModel.CompletedCount++;
                         }
                     }
                     else
                     {
                         task.CurrentState = StateTask.Pending;
-                        _model.PendingCount++;
+                        _model.TasksStatusModel.PendingCount++;
                     }
                 }
             }
 
-            _view.PendingCountText.text = _model.PendingCount.ToString();
-            _view.JeopardyCountText.text = _model.JeopardyCount.ToString();
-            _view.CompletedCountText.text = _model.CompletedCount.ToString();
+            _view.PendingCountText.text = _model.TasksStatusModel.PendingCount.ToString();
+            _view.JeopardyCountText.text = _model.TasksStatusModel.JeopardyCount.ToString();
+            _view.CompletedCountText.text = _model.TasksStatusModel.CompletedCount.ToString();
         }
     }
 }

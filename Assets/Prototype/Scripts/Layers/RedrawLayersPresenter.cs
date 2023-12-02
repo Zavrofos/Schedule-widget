@@ -13,12 +13,12 @@
 
         public void Subscribe()
         {
-            _model.ContentScrollPositionChangedVertical += OnRedrawLayers;
+            _model.VirtualizationModel.ContentScrollPositionChangedVertical += OnRedrawLayers;
         }
 
         public void Unsubscribe()
         {
-            _model.ContentScrollPositionChangedVertical -= OnRedrawLayers;
+            _model.VirtualizationModel.ContentScrollPositionChangedVertical -= OnRedrawLayers;
         }
 
         private void OnRedrawLayers()
@@ -42,7 +42,7 @@
                 }
             }
             
-            _model.ChangeContentScrollPositionHorizontal();
+            _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();
         }
     }
 }

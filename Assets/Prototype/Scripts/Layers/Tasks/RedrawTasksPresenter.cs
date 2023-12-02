@@ -15,12 +15,12 @@ namespace Prototype.Scripts.Layers.Tasks
         
         public void Subscribe()
         {
-            _model.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
+            _model.VirtualizationModel.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
         }
 
         public void Unsubscribe()
         {
-            _model.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
+            _model.VirtualizationModel.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
         }
 
         private void OnRedrawTasks()

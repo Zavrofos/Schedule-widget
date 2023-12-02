@@ -54,9 +54,9 @@ namespace Prototype.Scripts
                 GameObject.Destroy(layerWindow.gameObject);
             }
 
-            _model.PendingCount = 0;
-            _model.JeopardyCount = 0;
-            _model.CompletedCount = 0;
+            _model.TasksStatusModel.PendingCount = 0;
+            _model.TasksStatusModel.JeopardyCount = 0;
+            _model.TasksStatusModel.CompletedCount = 0;
             
             _model.Initialize();
         }

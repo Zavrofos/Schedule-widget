@@ -21,14 +21,14 @@ namespace Prototype.Scripts.Layers
         {
             if (Mathf.Abs(_currentPositionContentVertical - _view.ScrollContent.anchoredPosition.y) > 100)
             {
-                _model.ChangeContentScrollPositionVertical();
+                _model.VirtualizationModel.ChangeContentScrollPositionVertical();
                 _currentPositionContentVertical = _view.ScrollContent.anchoredPosition.y -
                                                   _view.ScrollContent.anchoredPosition.y % 100;
             }
 
             if (Mathf.Abs(_currentLeftBoardValue - Mathf.Abs(_view.ScrollContent.anchoredPosition.x)) > 100)
             {
-                _model.ChangeContentScrollPositionHorizontal();
+                _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();
                 _currentLeftBoardValue = Mathf.Abs(_view.ScrollContent.anchoredPosition.x) -
                                          Mathf.Abs(_view.ScrollContent.anchoredPosition.x) % 100;
             }

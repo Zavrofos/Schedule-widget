@@ -7,35 +7,22 @@ namespace Prototype.Scripts
     public class Model
     {
         public LayersModel LayersModel;
+        public TasksStatusModel TasksStatusModel;
+        public VirtualizationModel VirtualizationModel;
         
         public event Action Initialized;
-        public event Action ContentScrollPositionChangedVertical;
-        public event Action ContentScrollPositionChangedHorizontal;
-
-        public int PendingCount;
-        public int JeopardyCount;
-        public int CompletedCount;
-
+        
         public Model()
         {
             LayersModel = new LayersModel();
+            TasksStatusModel = new TasksStatusModel();
+            VirtualizationModel = new VirtualizationModel();
         }
 
         public void Initialize()
         {
             Initialized?.Invoke();
-            ContentScrollPositionChangedVertical?.Invoke();
-            ContentScrollPositionChangedHorizontal?.Invoke();
-        }
-
-        public void ChangeContentScrollPositionVertical()
-        {
-            ContentScrollPositionChangedVertical?.Invoke();
-        }
-        
-        public void ChangeContentScrollPositionHorizontal()
-        {
-            ContentScrollPositionChangedHorizontal?.Invoke();
+            VirtualizationModel.Initialize();
         }
     }
 }
