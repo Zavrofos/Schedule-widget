@@ -27,7 +27,7 @@ namespace Prototype.Scripts.Layers.Tasks
 
         private void OnTurnOn()
         {
-            TaskWindow taskWindow = _task.ParentLayer.LayerWindow.PoolTaskWindows.GetFreeElement();
+            TaskWindow taskWindow = _model.LayersModel.IncludedLayers[_task.ParentLayer].PoolTaskWindows.GetFreeElement();
             
             if (_task.CurrentState == StateTask.Pending)
             {

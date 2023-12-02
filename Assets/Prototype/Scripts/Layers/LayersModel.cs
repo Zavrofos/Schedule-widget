@@ -8,7 +8,7 @@ namespace Prototype.Scripts.Layers
         public Pool<LayerWindow> PoolLayerWindows;
         
         public List<Layer> Layers;
-        public List<Layer> IncludedLayers;
+        public Dictionary<Layer, LayerWindow> IncludedLayers;
         
         public event Action AddedLayer;
         public event Action<Layer> RemovedLayer;
@@ -16,7 +16,7 @@ namespace Prototype.Scripts.Layers
         public LayersModel()
         {
             Layers = new List<Layer>();
-            IncludedLayers = new List<Layer>();
+            IncludedLayers = new Dictionary<Layer, LayerWindow>();
         }
 
         public void Addlayer()

@@ -35,10 +35,8 @@ namespace Prototype.Scripts.Layers
                 }
             }
             
-            _layer.LayerWindow.RectTransform.anchoredPosition = Vector2.zero;
-            _layer.LayerWindow.gameObject.SetActive(false);
-            _layer.LayerWindow = null;
-
+            _model.LayersModel.IncludedLayers[_layer].RectTransform.anchoredPosition = Vector2.zero;
+            _model.LayersModel.IncludedLayers[_layer].gameObject.SetActive(false);
             _model.LayersModel.IncludedLayers.Remove(_layer);
         }
     }

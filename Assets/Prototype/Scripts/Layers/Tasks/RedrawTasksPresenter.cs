@@ -25,7 +25,7 @@ namespace Prototype.Scripts.Layers.Tasks
 
         private void OnRedrawTasks()
         {
-            foreach (var includedLayer in _model.LayersModel.IncludedLayers)
+            foreach (var includedLayer in _model.LayersModel.IncludedLayers.Keys)
             {
                 foreach (var task in includedLayer.Tasks)
                 {

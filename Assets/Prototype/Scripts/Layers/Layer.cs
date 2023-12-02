@@ -7,7 +7,6 @@ namespace Prototype.Scripts.Layers
     public class Layer
     {
         public readonly float InitialPosition;
-        public LayerWindow LayerWindow;
         public bool IsActive;
         public List<Task> Tasks;
         
