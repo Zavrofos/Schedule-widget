@@ -8,30 +8,26 @@ namespace Prototype.Scripts.Layers.Tasks
         public readonly int EndTime;
         public bool IsActive;
         public StateTask CurrentState;
-        public readonly Layer ParentLayer;
-        public TaskWindow TaskWindow;
-        public event Action TurnedOn;
-        public event Action TurnedOff;
+        
+        public event Action<Layer> TurnedOn;
+        public event Action<Layer> TurnedOff;
 
-        public Task(int startTime, int endTime, Layer parentlayer)
+        public Task(int startTime, int endTime)
         {
             StartTime = startTime;
             EndTime = endTime;
-            ParentLayer = parentlayer;
             IsActive = false;
             CurrentState = StateTask.Pending;
         }
 
-        public void TurnOn()
+        public void TurnOn(Layer parentLayer)
         {
-            IsActive = true;
-            TurnedOn?.Invoke();
+            TurnedOn?.Invoke(parentLayer);
         }
 
-        public void TurnOff()
+        public void TurnOff(Layer parentLayer)
         {
-            IsActive = false;
-            TurnedOff?.Invoke();
+            TurnedOff?.Invoke(parentLayer);
         }
     }
 }

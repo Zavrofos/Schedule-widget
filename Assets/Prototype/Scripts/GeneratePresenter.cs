@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Prototype.Scripts.Layers;
+using Prototype.Scripts.Layers.Tasks;
 using UnityEngine;
 
 namespace Prototype.Scripts
@@ -30,11 +31,16 @@ namespace Prototype.Scripts
             List<Layer> layersToRemove = new List<Layer>();
             foreach (var layer in _model.LayersModel.Layers)
             {
+                List<Task> tasksToRemove = new List<Task>();
                 foreach (var task in layer.Tasks)
                 {
-                    layer.UnsubscribeTaskPresenters(task);
+                    tasksToRemove.Add(task);
                 }
-                layer.Tasks.Clear();
+                foreach (var task in tasksToRemove)
+                {
+                    layer.RemoveTask(task);
+                }
+                
                 layersToRemove.Add(layer);
             }
 

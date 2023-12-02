@@ -37,14 +37,14 @@ namespace Prototype.Scripts.Layers.Tasks
                     {
                         if (!task.IsActive)
                         {
-                            task.TurnOn();
+                            task.TurnOn(includedLayer);
                         }
                     }
                     else
                     {
                         if (task.IsActive)
                         {
-                            task.TurnOff();
+                            task.TurnOff(includedLayer);
                         }
                     }
                 }

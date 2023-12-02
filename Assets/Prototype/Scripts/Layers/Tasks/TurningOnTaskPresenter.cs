@@ -25,9 +25,9 @@ namespace Prototype.Scripts.Layers.Tasks
             _task.TurnedOn += OnTurnOn;
         }
 
-        private void OnTurnOn()
+        private void OnTurnOn(Layer parentLayer)
         {
-            TaskWindow taskWindow = _model.LayersModel.IncludedLayers[_task.ParentLayer].PoolTaskWindows.GetFreeElement();
+            TaskWindow taskWindow = _model.LayersModel.IncludedLayers[parentLayer].PoolTaskWindows.GetFreeElement();
             
             if (_task.CurrentState == StateTask.Pending)
             {
@@ -48,7 +48,9 @@ namespace Prototype.Scripts.Layers.Tasks
             taskWindow.TaskRectTransform.sizeDelta = new Vector2(sizeX, taskWindow.TaskRectTransform.sizeDelta.y);
             taskWindow.TaskRectTransform.anchoredPosition = new Vector2(positionX, taskWindow.TaskRectTransform.anchoredPosition.y);
 
-            _task.TaskWindow = taskWindow;
+            parentLayer.IncludedTasks.Add(_task, taskWindow);
+
+            _task.IsActive = true;
         }
     }
 }

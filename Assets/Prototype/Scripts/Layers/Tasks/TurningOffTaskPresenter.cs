@@ -25,12 +25,13 @@ namespace Prototype.Scripts.Layers.Tasks
             _task.TurnedOff += OnTurnOff;
         }
 
-        private void OnTurnOff()
+        private void OnTurnOff(Layer parentLayer)
         {
-            _task.TaskWindow.TaskRectTransform.sizeDelta = new Vector2(100, 80);
-            _task.TaskWindow.TaskRectTransform.anchoredPosition = Vector2.zero;
-            _task.TaskWindow.gameObject.SetActive(false);
-            _task.TaskWindow = null;
+            parentLayer.IncludedTasks[_task].TaskRectTransform.sizeDelta = new Vector2(100, 80);
+            parentLayer.IncludedTasks[_task].TaskRectTransform.anchoredPosition = Vector2.zero;
+            parentLayer.IncludedTasks[_task].gameObject.SetActive(false);
+            _task.IsActive = false;
+            parentLayer.IncludedTasks.Remove(_task);
         }
     }
 }
