@@ -27,9 +27,9 @@ namespace Prototype.Scripts
 
         private void OnInitialize()
         {
-            _model.PoolLayerWindows = new Pool<LayerWindow>(_view.LayerWindowPrefab, _view.ScrollContent, _view.CountLayerPool);
+            _model.LayersModel.PoolLayerWindows = new Pool<LayerWindow>(_view.LayerWindowPrefab, _view.ScrollContent, _view.CountLayerPool);
 
-            foreach (var layerWindow in _model.PoolLayerWindows.PoolObj)
+            foreach (var layerWindow in _model.LayersModel.PoolLayerWindows.PoolObj)
             {
                 layerWindow.PoolTaskWindows = new Pool<TaskWindow>(_view.TaskWindowPrefab, layerWindow.RectTransform, _view.CountTaskPool);
             }

@@ -5,8 +5,11 @@ namespace Prototype.Scripts.Layers
 {
     public class LayersModel
     {
+        public Pool<LayerWindow> PoolLayerWindows;
+        
         public List<Layer> Layers;
         public List<Layer> IncludedLayers;
+        
         public event Action AddedLayer;
         public event Action<Layer> UnsubscribedLayerPresenters;
 

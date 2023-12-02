@@ -37,7 +37,7 @@ namespace Prototype.Scripts
                 _model.LayersModel.UnsubscribeLayerPresenters(layer);
             }
             
-            foreach (var layerWindow in _model.PoolLayerWindows.PoolObj)
+            foreach (var layerWindow in _model.LayersModel.PoolLayerWindows.PoolObj)
             {
                 GameObject.Destroy(layerWindow.gameObject);
             }

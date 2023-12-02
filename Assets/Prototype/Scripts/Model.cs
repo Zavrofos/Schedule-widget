@@ -6,7 +6,6 @@ namespace Prototype.Scripts
 {
     public class Model
     {
-        public Pool<LayerWindow> PoolLayerWindows;
         public LayersModel LayersModel;
         
         public event Action Initialized;
