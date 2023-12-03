@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Prototype.Scripts.Layers.Tasks;
+using Prototype.Scripts.Tasks;
 
 namespace Prototype.Scripts.Layers
 {
@@ -19,31 +19,39 @@ namespace Prototype.Scripts.Layers
         public void Subscribe()
         {
             _model.LayersModel.AddedLayer += OnAddNewLayer;
-            _model.LayersModel.UnsubscribedLayerPresenters += UnsubscribeLayerPresentersPresenters;
+            _model.LayersModel.RemovedLayer += OnRemoveLayer;
         }
 
         public void Unsubscribe()
         {
             _model.LayersModel.AddedLayer -= OnAddNewLayer;
-            _model.LayersModel.UnsubscribedLayerPresenters -= UnsubscribeLayerPresentersPresenters;
+            _model.LayersModel.RemovedLayer -= OnRemoveLayer;
         }
 
         private void OnAddNewLayer()
         {
-            Layer newLayer;
-            
+            float initialPositionLayer;
             if (_model.LayersModel.Layers.Count == 0)
-                newLayer = new Layer(0);
+            {
+                initialPositionLayer = 0;
+            }
             else
-                newLayer = new Layer(_model.LayersModel.Layers[_model.LayersModel.Layers.Count - 1].InitialPosition + 100);
+            {
+                initialPositionLayer = _model.LayersModel.Layers[_model.LayersModel.Layers.Count - 1].InitialPosition +
+                                       _view.LayerWindowPrefab.RectTransform.sizeDelta.y;
+            }
             
+            _model.WorkZoneModel.ChangeContentSizeY(_model.WorkZoneModel.contentSizeY + _view.LayerWindowPrefab.RectTransform.sizeDelta.y);
+            
+            Layer newLayer = new Layer(initialPositionLayer);
             _model.LayersModel.Layers.Add(newLayer);
 
             List<IPresenter> presenters = new List<IPresenter>()
             {
                 new TurningOnLayerPresenter(_model, newLayer, _view),
                 new TurningOffLayerPresenter(_model, newLayer, _view),
-                new AddingTasksPresenter(_model, newLayer, _view)
+                new AddingTasksPresenter(_model, newLayer, _view),
+                new SettingStateTasksInLayerPresenter(_model, newLayer, _view)
             };
 
             foreach (var presenter in presenters)
@@ -54,7 +62,7 @@ namespace Prototype.Scripts.Layers
             LayersPresenters.Add(newLayer, presenters);
         }
 
-        private void UnsubscribeLayerPresentersPresenters(Layer layer)
+        private void OnRemoveLayer(Layer layer)
         {
             foreach (var presenters in LayersPresenters[layer])
             {
@@ -62,6 +70,13 @@ namespace Prototype.Scripts.Layers
             }
 
             LayersPresenters.Remove(layer);
+            
+            if (layer.IsActive)
+            {
+                _model.LayersModel.IncludedLayers.Remove(layer);
+            }
+            
+            _model.LayersModel.Layers.Remove(layer);
         }
     }
 }

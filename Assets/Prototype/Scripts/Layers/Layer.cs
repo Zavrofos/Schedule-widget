@@ -1,37 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using Prototype.Scripts.Layers.Tasks;
+using Prototype.Scripts.Tasks;
 
 namespace Prototype.Scripts.Layers
 {
     public class Layer
     {
-        public readonly int InitialPosition;
+        public readonly float InitialPosition;
         public bool IsActive;
-        public LayerWindow LayerWindow;
+        public List<Task> Tasks;
+        public Dictionary<Task, TaskWindow> IncludedTasks;
+
         public event Action TurnedOn;
         public event Action TurnedOff;
-
-        public List<Task> Tasks;
         public event Action<int, int> AddedTask;
-        public event Action<Task> UnsubscribedTaskPresenters;
+        public event Action<Task> RemovedTask;
+        public event Action SettedStateTasks;
 
-        public Layer(int initialPosition)
+        public Layer(float initialPosition)
         {
             InitialPosition = initialPosition;
             IsActive = false;
             Tasks = new List<Task>();
+            IncludedTasks = new Dictionary<Task, TaskWindow>();
         }
 
         public void TurnOn()
         {
-            IsActive = true;
             TurnedOn?.Invoke();
         }
 
         public void TurnOff()
         {
-            IsActive = false;
             TurnedOff?.Invoke();
         }
 
@@ -40,9 +40,14 @@ namespace Prototype.Scripts.Layers
             AddedTask?.Invoke(startTime, endTime);
         }
 
-        public void UnsubscribeTaskPresenters(Task task)
+        public void RemoveTask(Task task)
         {
-            UnsubscribedTaskPresenters?.Invoke(task);
+            RemovedTask?.Invoke(task);
+        }
+
+        public void SetStateTasks()
+        {
+            SettedStateTasks?.Invoke();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Prototype.Scripts.Tasks;
+using UnityEngine;
 
 namespace Prototype.Scripts.Layers
 {
@@ -27,18 +29,20 @@ namespace Prototype.Scripts.Layers
 
         private void OnTurnOff()
         {
-            foreach (var task in _layer.Tasks)
+            List<Task> tasksForTurnOff = new List<Task>();
+            foreach (var includedTask in _layer.IncludedTasks.Keys)
             {
-                if (task.IsActive)
-                {
-                    task.TurnOff();
-                }
+                tasksForTurnOff.Add(includedTask);
             }
-            
-            _layer.LayerWindow.RectTransform.anchoredPosition = Vector2.zero;
-            _layer.LayerWindow.gameObject.SetActive(false);
-            _layer.LayerWindow = null;
 
+            foreach (var includedTask in tasksForTurnOff)
+            {
+                includedTask.TurnOff(_layer);
+            }
+
+            _layer.IsActive = false;
+            _model.LayersModel.IncludedLayers[_layer].RectTransform.anchoredPosition = Vector2.zero;
+            _model.LayersModel.IncludedLayers[_layer].gameObject.SetActive(false);
             _model.LayersModel.IncludedLayers.Remove(_layer);
         }
     }

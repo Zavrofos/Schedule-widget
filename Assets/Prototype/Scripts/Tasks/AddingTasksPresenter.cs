@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Prototype.Scripts.Layers;
 
-namespace Prototype.Scripts.Layers.Tasks
+namespace Prototype.Scripts.Tasks
 {
     public class AddingTasksPresenter : IPresenter
     {
@@ -20,19 +21,24 @@ namespace Prototype.Scripts.Layers.Tasks
         public void Subscribe()
         {
             _layer.AddedTask += OnAddTask;
-            _layer.UnsubscribedTaskPresenters += UnsubscribeTaskPresentersPresenters;
+            _layer.RemovedTask += OnRemoveTask;
 
         }
 
         public void Unsubscribe()
         {
             _layer.AddedTask -= OnAddTask;
-            _layer.UnsubscribedTaskPresenters -= UnsubscribeTaskPresentersPresenters;
+            _layer.RemovedTask -= OnRemoveTask;
         }
 
         private void OnAddTask(int startTime, int endTime)
         {
-            Task newTask = new Task(startTime, endTime, _layer);
+            Task newTask = new Task(startTime, endTime);
+
+            if (endTime - 1700 > _model.WorkZoneModel.contentSizeX)
+            {
+                _model.WorkZoneModel.ChangeContentSizeX(endTime - 1700);
+            }
 
             List<IPresenter> presenters = new List<IPresenter>()
             {
@@ -50,7 +56,7 @@ namespace Prototype.Scripts.Layers.Tasks
             _layer.Tasks.Add(newTask);
         }
 
-        private void UnsubscribeTaskPresentersPresenters(Task task)
+        private void OnRemoveTask(Task task)
         {
             foreach (var presenter in TasksPresenters[task])
             {
@@ -58,6 +64,13 @@ namespace Prototype.Scripts.Layers.Tasks
             }
 
             TasksPresenters.Remove(task);
+
+            if (task.IsActive)
+            {
+                _layer.IncludedTasks.Remove(task);
+            }
+
+            _layer.Tasks.Remove(task);
         }
     }
 }

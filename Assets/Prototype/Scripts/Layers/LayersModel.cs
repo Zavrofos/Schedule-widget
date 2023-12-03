@@ -5,15 +5,18 @@ namespace Prototype.Scripts.Layers
 {
     public class LayersModel
     {
+        public Pool<LayerWindow> PoolLayerWindows;
+        
         public List<Layer> Layers;
-        public List<Layer> IncludedLayers;
+        public Dictionary<Layer, LayerWindow> IncludedLayers;
+        
         public event Action AddedLayer;
-        public event Action<Layer> UnsubscribedLayerPresenters;
+        public event Action<Layer> RemovedLayer;
 
         public LayersModel()
         {
             Layers = new List<Layer>();
-            IncludedLayers = new List<Layer>();
+            IncludedLayers = new Dictionary<Layer, LayerWindow>();
         }
 
         public void Addlayer()
@@ -21,9 +24,9 @@ namespace Prototype.Scripts.Layers
             AddedLayer?.Invoke();
         }
 
-        public void UnsubscribeLayerPresenters(Layer layer)
+        public void RemoveLayer(Layer layer)
         {
-            UnsubscribedLayerPresenters?.Invoke(layer);
+            RemovedLayer?.Invoke(layer);
         }
     }
 }

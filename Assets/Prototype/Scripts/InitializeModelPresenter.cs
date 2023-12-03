@@ -1,5 +1,5 @@
 ﻿using Prototype.Scripts.Layers;
-using Prototype.Scripts.Layers.Tasks;
+using Prototype.Scripts.Tasks;
 using UnityEngine;
 
 namespace Prototype.Scripts
@@ -27,20 +27,18 @@ namespace Prototype.Scripts
 
         private void OnInitialize()
         {
-            _model.PoolLayerWindows = new Pool<LayerWindow>(_view.LayerWindowPrefab, _view.ScrollContent, _view.CountLayerPool);
+            _model.LayersModel.PoolLayerWindows = new Pool<LayerWindow>(_view.LayerWindowPrefab, _view.WorkZoneScrollContent, _view.CountLayerPool);
 
-            foreach (var layerWindow in _model.PoolLayerWindows.PoolObj)
+            foreach (var layerWindow in _model.LayersModel.PoolLayerWindows.PoolObj)
             {
                 layerWindow.PoolTaskWindows = new Pool<TaskWindow>(_view.TaskWindowPrefab, layerWindow.RectTransform, _view.CountTaskPool);
             }
-            
-            float newHeight = _view.InitialCountLayers * 100;
-            _view.ScrollContent.sizeDelta = new Vector2(_view.ScrollContent.sizeDelta.x, newHeight);
 
-            for (int i = 0; i < _view.InitialCountLayers; i++)
-            {
-                _model.LayersModel.Addlayer();
-            }
+            _model.WorkZoneModel.contentSizeX = _view.WorkZoneScrollContent.sizeDelta.x;
+
+            _model.WorkZoneModel.InitialSize = _view.WorkZoneScrollContent.sizeDelta;
+            _model.TimeLineModel.InitialSize = _view.TimeLineContent.sizeDelta;
+            _model.TimeScaleModel.InitialSize = _view.TimeScaleContent.sizeDelta;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Prototype.Scripts.Layers.Tasks
+namespace Prototype.Scripts.Tasks
 {
     public class TaskWindow : MonoBehaviour
     {

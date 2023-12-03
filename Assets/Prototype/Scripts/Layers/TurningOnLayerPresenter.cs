@@ -27,13 +27,13 @@ namespace Prototype.Scripts.Layers
 
         private void OnTurnOn()
         {
-            LayerWindow layerWindow = _model.PoolLayerWindows.GetFreeElement();
+            LayerWindow layerWindow = _model.LayersModel.PoolLayerWindows.GetFreeElement();
             var anchoredPosition = layerWindow.RectTransform.anchoredPosition;
             anchoredPosition = new Vector3(0, -_layer.InitialPosition, 0);
             layerWindow.RectTransform.anchoredPosition = anchoredPosition;
-            _layer.LayerWindow = layerWindow;
-            
-            _model.LayersModel.IncludedLayers.Add(_layer);
+
+            _layer.IsActive = true;
+            _model.LayersModel.IncludedLayers.Add(_layer, layerWindow);
         }
     }
 }

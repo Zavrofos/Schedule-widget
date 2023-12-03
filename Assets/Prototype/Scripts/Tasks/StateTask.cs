@@ -1,4 +1,4 @@
-﻿namespace Prototype.Scripts.Layers.Tasks
+﻿namespace Prototype.Scripts.Tasks
 {
     public enum StateTask
     {

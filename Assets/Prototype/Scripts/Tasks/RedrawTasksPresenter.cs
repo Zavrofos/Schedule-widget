@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Prototype.Scripts.Layers.Tasks
+namespace Prototype.Scripts.Tasks
 {
     public class RedrawTasksPresenter : IPresenter
     {
@@ -15,36 +15,36 @@ namespace Prototype.Scripts.Layers.Tasks
         
         public void Subscribe()
         {
-            _model.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
+            _model.VirtualizationModel.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
         }
 
         public void Unsubscribe()
         {
-            _model.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
+            _model.VirtualizationModel.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
         }
 
         private void OnRedrawTasks()
         {
-            foreach (var includedLayer in _model.LayersModel.IncludedLayers)
+            foreach (var includedLayer in _model.LayersModel.IncludedLayers.Keys)
             {
                 foreach (var task in includedLayer.Tasks)
                 {
                     float sizeTask = task.EndTime - task.StartTime;
                     float positionTask = task.StartTime + (sizeTask / 2);
 
-                    if (positionTask > Mathf.Abs(_view.ScrollContent.anchoredPosition.x) - 200 &&
-                        positionTask < Mathf.Abs(_view.ScrollContent.anchoredPosition.x) + 2000)
+                    if (positionTask > Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x) - 200 &&
+                        positionTask < Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x) + 2000)
                     {
                         if (!task.IsActive)
                         {
-                            task.TurnOn();
+                            task.TurnOn(includedLayer);
                         }
                     }
                     else
                     {
                         if (task.IsActive)
                         {
-                            task.TurnOff();
+                            task.TurnOff(includedLayer);
                         }
                     }
                 }

@@ -13,20 +13,20 @@
 
         public void Subscribe()
         {
-            _model.ContentScrollPositionChangedVertical += OnRedrawLayers;
+            _model.VirtualizationModel.ContentScrollPositionChangedVertical += OnRedrawLayers;
         }
 
         public void Unsubscribe()
         {
-            _model.ContentScrollPositionChangedVertical -= OnRedrawLayers;
+            _model.VirtualizationModel.ContentScrollPositionChangedVertical -= OnRedrawLayers;
         }
 
         private void OnRedrawLayers()
         {
             foreach (var layer in _model.LayersModel.Layers)
             {
-                if ((layer.InitialPosition + 200 + 100) > _view.ScrollContent.anchoredPosition.y &&
-                    (_view.ScrollContent.anchoredPosition.y + 1000) > layer.InitialPosition)
+                if ((layer.InitialPosition + 200 + 100) > _view.WorkZoneScrollContent.anchoredPosition.y &&
+                    (_view.WorkZoneScrollContent.anchoredPosition.y + 1000) > layer.InitialPosition)
                 {
                     if (!layer.IsActive)
                     {
@@ -42,7 +42,7 @@
                 }
             }
             
-            _model.ChangeContentScrollPositionHorizontal();
+            _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();
         }
     }
 }
