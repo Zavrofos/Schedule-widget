@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Prototype.Scripts.Layers;
-using Prototype.Scripts.Layers.Tasks;
+using Prototype.Scripts.Tasks;
 using UnityEngine;
 
-namespace Prototype.Scripts
+namespace Prototype.Scripts.Random
 {
     public class GeneratePresenter : IPresenter
     {
@@ -43,22 +43,49 @@ namespace Prototype.Scripts
                 
                 layersToRemove.Add(layer);
             }
-
             foreach (var layer in layersToRemove)
             {
                 _model.LayersModel.RemoveLayer(layer);
             }
             
+            
             foreach (var layerWindow in _model.LayersModel.PoolLayerWindows.PoolObj)
             {
-                GameObject.Destroy(layerWindow.gameObject);
+                foreach (var taskWindow in layerWindow.PoolTaskWindows.PoolObj)
+                {
+                    taskWindow.TaskRectTransform.anchoredPosition = Vector2.zero;
+                    taskWindow.TaskRectTransform.sizeDelta = new Vector2(100, 80);
+                    taskWindow.gameObject.SetActive(false);
+                }
+                layerWindow.RectTransform.anchoredPosition = Vector2.zero;
+                layerWindow.gameObject.SetActive(false);
             }
 
+            
+            foreach (var partOfTimeScale in _model.TimeScaleModel.PartsOfTimeScale)
+            {
+                GameObject.Destroy(partOfTimeScale.gameObject);
+            }
+            _model.TimeScaleModel.PartsOfTimeScale.Clear();
+
+            _view.WorkZoneScrollContent.sizeDelta = _model.WorkZoneModel.InitialSize;
+            _view.TimeLineContent.sizeDelta = _model.TimeLineModel.InitialSize;
+            _view.TimeScaleContent.sizeDelta = _model.TimeScaleModel.InitialSize;
+            
+            _model.WorkZoneModel.contentSizeX = _view.WorkZoneScrollContent.sizeDelta.x;
+            _model.WorkZoneModel.contentSizeY = 0;
+            
             _model.TasksStatusModel.PendingCount = 0;
             _model.TasksStatusModel.JeopardyCount = 0;
             _model.TasksStatusModel.CompletedCount = 0;
             
-            _model.Initialize();
+            _model.TimeScaleModel.LastValueTime = 0;
+            _model.TimeScaleModel.Initialize();
+            
+            _model.RandomizeModel.SetRandomLayers();
+            _model.TimeLineModel.SetRandomPosition();
+            _model.VirtualizationModel.ChangeContentScrollPositionVertical();
+            _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();
         }
     }
 }
