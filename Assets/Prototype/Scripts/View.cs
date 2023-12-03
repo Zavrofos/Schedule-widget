@@ -31,7 +31,6 @@ namespace Prototype.Scripts
         public TMP_Text JeopardyCountText;
         public TMP_Text CompletedCountText;
         
-        public int InitialCountLayers;
         public int CountLayerPool;
         public int CountTaskPool;
         public int MaxTasksInLayer;
