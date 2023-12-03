@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Prototype.Scripts.Layers.Tasks
+namespace Prototype.Scripts.Tasks
 {
     public class RedrawTasksPresenter : IPresenter
     {
@@ -32,8 +32,8 @@ namespace Prototype.Scripts.Layers.Tasks
                     float sizeTask = task.EndTime - task.StartTime;
                     float positionTask = task.StartTime + (sizeTask / 2);
 
-                    if (positionTask > Mathf.Abs(_view.ScrollContent.anchoredPosition.x) - 200 &&
-                        positionTask < Mathf.Abs(_view.ScrollContent.anchoredPosition.x) + 2000)
+                    if (positionTask > Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x) - 200 &&
+                        positionTask < Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x) + 2000)
                     {
                         if (!task.IsActive)
                         {

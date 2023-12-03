@@ -1,6 +1,7 @@
 ﻿using System;
+using Prototype.Scripts.Layers;
 
-namespace Prototype.Scripts.Layers.Tasks
+namespace Prototype.Scripts.Tasks
 {
     public class Task
     {

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Prototype.Scripts.Layers;
+using UnityEngine;
 
-namespace Prototype.Scripts.Layers.Tasks
+namespace Prototype.Scripts.Tasks
 {
     public class TurningOffTaskPresenter : IPresenter
     {

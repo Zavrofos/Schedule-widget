@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Prototype.Scripts.Layers;
 
-namespace Prototype.Scripts.Layers.Tasks
+namespace Prototype.Scripts.Tasks
 {
     public class AddingTasksPresenter : IPresenter
     {
@@ -33,6 +34,11 @@ namespace Prototype.Scripts.Layers.Tasks
         private void OnAddTask(int startTime, int endTime)
         {
             Task newTask = new Task(startTime, endTime);
+
+            if (endTime - 1700 > _model.WorkZoneModel.contentSizeX)
+            {
+                _model.WorkZoneModel.ChangeContentSizeX(endTime - 1700);
+            }
 
             List<IPresenter> presenters = new List<IPresenter>()
             {
