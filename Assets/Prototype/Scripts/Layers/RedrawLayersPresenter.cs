@@ -36,39 +36,16 @@ namespace Prototype.Scripts.Layers
                 layer.TurnOff();
             }
             
-            float downCount = 3;
-            float upCount = 10;
-            float currentPositionY = _view.WorkZoneScrollContent.anchoredPosition.y;
-            float positionY = 100 - (currentPositionY % 100) + currentPositionY;
+            float positionY = _view.WorkZoneScrollContent.anchoredPosition.y;
+            float upBoard = positionY - 300;
+            float downBoard = positionY + 1000;
             
-            float posYDown = positionY;
-            for (int i = 0; i < downCount; i++)
+            int upBoardLayerPositionIndex = _model.LayersModel.GetUpBoardLayerPosition(upBoard);
+            int downBoardLayerPositionIndex = _model.LayersModel.GetDownBoardLayerPosition(downBoard);
+
+            for (int i = upBoardLayerPositionIndex; i <= downBoardLayerPositionIndex; i++)
             {
-                Layer layer;
-                if (_model.LayersModel.Layers.Search(posYDown, out layer))
-                {
-                    if (!layer.IsActive)
-                    {
-                        layer.TurnOn();
-                    }
-                }
-            
-                posYDown -= 100;
-            }
-            
-            float posYUp = positionY;
-            for (int i = 0; i < upCount; i++)
-            {
-                Layer layer;
-                if (_model.LayersModel.Layers.Search(posYUp, out layer))
-                {
-                    if (!layer.IsActive)
-                    {
-                        layer.TurnOn();
-                    }
-                }
-            
-                posYUp += 100;
+                _model.LayersModel.Layers[i].TurnOn();
             }
             
             _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();

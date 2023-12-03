@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Prototype.Scripts.Layers;
+using UnityEngine;
 
 namespace Prototype.Scripts.Tasks
 {
@@ -25,28 +27,32 @@ namespace Prototype.Scripts.Tasks
 
         private void OnRedrawTasks()
         {
+            List<(Task, Layer)> tasksToTurnOff = new List<(Task, Layer)>();
             foreach (var includedLayer in _model.LayersModel.IncludedLayers.Keys)
             {
-                foreach (var task in includedLayer.Tasks)
+                foreach (var includedTask in includedLayer.IncludedTasks.Keys)
                 {
-                    float sizeTask = task.EndTime - task.StartTime;
-                    float positionTask = task.StartTime + (sizeTask / 2);
+                    tasksToTurnOff.Add((includedTask, includedLayer));
+                }
+            }
+            foreach (var task in tasksToTurnOff)
+            {
+                task.Item1.TurnOff(task.Item2);
+            }
+            
+            
+            float positionX = -_view.WorkZoneScrollContent.anchoredPosition.x;
+            float leftBoard = positionX - 200;
+            float rightBoard = positionX + 2000;
 
-                    if (positionTask > Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x) - 200 &&
-                        positionTask < Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x) + 2000)
-                    {
-                        if (!task.IsActive)
-                        {
-                            task.TurnOn(includedLayer);
-                        }
-                    }
-                    else
-                    {
-                        if (task.IsActive)
-                        {
-                            task.TurnOff(includedLayer);
-                        }
-                    }
+            foreach (var layer in _model.LayersModel.IncludedLayers.Keys)
+            {
+                int leftBoardTaskPositionIndex = layer.GetLeftBoardTaskPosition(leftBoard);
+                int rightBoardTaskPositionIndex = layer.GetRightBoardTaskPosition(rightBoard);
+
+                for (int i = leftBoardTaskPositionIndex; i <= rightBoardTaskPositionIndex; i++)
+                {
+                    layer.Tasks[i].TurnOn(layer);
                 }
             }
         }

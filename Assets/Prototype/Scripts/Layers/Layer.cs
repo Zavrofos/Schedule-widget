@@ -9,6 +9,7 @@ namespace Prototype.Scripts.Layers
         public readonly float InitialPosition;
         public bool IsActive;
         public List<Task> Tasks;
+        public List<(float, float)> TasksPositions;
         public Dictionary<Task, TaskWindow> IncludedTasks;
 
         public event Action TurnedOn;
@@ -23,6 +24,7 @@ namespace Prototype.Scripts.Layers
             IsActive = false;
             Tasks = new List<Task>();
             IncludedTasks = new Dictionary<Task, TaskWindow>();
+            TasksPositions = new List<(float, float)>();
         }
 
         public void TurnOn()
@@ -48,6 +50,50 @@ namespace Prototype.Scripts.Layers
         public void SetStateTasks()
         {
             SettedStateTasks?.Invoke();
+        }
+        
+        public int GetLeftBoardTaskPosition(float upBoard)
+        {
+            int left = 0;
+            int right = TasksPositions.Count;
+
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (TasksPositions[mid].Item2 < upBoard)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+
+            return left;
+        }
+
+        public int GetRightBoardTaskPosition(float downBoard)
+        {
+            int left = 0;
+            int right = TasksPositions.Count;
+
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (TasksPositions[mid].Item1 <= downBoard)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+
+            return left - 1;
         }
     }
 }

@@ -9,17 +9,18 @@ namespace Prototype.Scripts.Layers
         public Pool<LayerWindow> PoolLayerWindows;
 
         public Layer PreviousLayer;
-        public AvlNode<float, Layer> MinNode;
-        
-        public AvlTree<float, Layer> Layers;
+
+        public List<Layer> Layers;
+        public List<float> LayersPositions;
         public Dictionary<Layer, LayerWindow> IncludedLayers;
         
         public event Action AddedLayer;
         public event Action<Layer> RemovedLayer;
-
+        
         public LayersModel()
         {
-            Layers = new AvlTree<float, Layer>();
+            Layers = new List<Layer>();
+            LayersPositions = new List<float>();
             IncludedLayers = new Dictionary<Layer, LayerWindow>();
         }
 
@@ -31,6 +32,51 @@ namespace Prototype.Scripts.Layers
         public void RemoveLayer(Layer layer)
         {
             RemovedLayer?.Invoke(layer);
+        }
+
+
+        public int GetUpBoardLayerPosition(float upBoard)
+        {
+            int left = 0;
+            int right = LayersPositions.Count;
+
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (LayersPositions[mid] < upBoard)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+
+            return left;
+        }
+
+        public int GetDownBoardLayerPosition(float downBoard)
+        {
+            int left = 0;
+            int right = LayersPositions.Count;
+
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (LayersPositions[mid] <= downBoard)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+
+            return left - 1;
         }
     }
 }

@@ -33,7 +33,6 @@ namespace Prototype.Scripts.Random
             {
                 _model.LayersModel.Addlayer();
                 Layer newLayer = _model.LayersModel.PreviousLayer;
-                float key = _model.LayersModel.Layers.Root.Key;
                 _model.RandomizeModel.RandomFillLayer(newLayer, countRandomTask);
             }
         }

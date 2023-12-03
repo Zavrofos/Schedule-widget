@@ -29,19 +29,19 @@ namespace Prototype.Scripts.Random
         private void OnGenerate()
         {
             List<Layer> layersToRemove = new List<Layer>();
-            foreach (var node in _model.LayersModel.Layers)
+            foreach (var layer in _model.LayersModel.Layers)
             {
                 List<Task> tasksToRemove = new List<Task>();
-                foreach (var task in node.Value.Tasks)
+                foreach (var task in layer.Tasks)
                 {
                     tasksToRemove.Add(task);
                 }
                 foreach (var task in tasksToRemove)
                 {
-                    node.Value.RemoveTask(task);
+                    layer.RemoveTask(task);
                 }
                 
-                layersToRemove.Add(node.Value);
+                layersToRemove.Add(layer);
             }
             foreach (var layer in layersToRemove)
             {
@@ -66,6 +66,8 @@ namespace Prototype.Scripts.Random
             {
                 GameObject.Destroy(partOfTimeScale.gameObject);
             }
+            
+            _model.LayersModel.LayersPositions.Clear();
             _model.TimeScaleModel.PartsOfTimeScale.Clear();
 
             _view.WorkZoneScrollContent.sizeDelta = _model.WorkZoneModel.InitialSize;

@@ -54,6 +54,7 @@ namespace Prototype.Scripts.Tasks
             TasksPresenters.Add(newTask, presenters);
             
             _layer.Tasks.Add(newTask);
+            _layer.TasksPositions.Add((startTime, endTime));
         }
 
         private void OnRemoveTask(Task task)

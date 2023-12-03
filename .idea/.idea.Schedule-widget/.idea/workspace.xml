@@ -38,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.30827066" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.24553151" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.environmentSetup" />
@@ -81,7 +81,7 @@
       <workItem from="1701504228468" duration="32224000" />
       <workItem from="1701541845033" duration="4943000" />
       <workItem from="1701580052349" duration="4627000" />
-      <workItem from="1701586941891" duration="17380000" />
+      <workItem from="1701586941891" duration="32183000" />
     </task>
     <servers />
   </component>
@@ -98,30 +98,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Prototype/Scripts/Layers/RedrawLayersPresenter.cs</url>
-          <line>27</line>
-          <properties documentPath="C:\Nikolay\Unity C#\Repositories\Schedule-widget\Assets\Prototype\Scripts\Layers\RedrawLayersPresenter.cs" initialLine="27" containingFunctionPresentation="method 'OnRedrawLayers'">
+          <url>file://$PROJECT_DIR$/Assets/Prototype/Scripts/Tasks/RedrawTasksPresenter.cs</url>
+          <line>83</line>
+          <properties documentPath="C:\Nikolay\Unity C#\Repositories\Schedule-widget\Assets\Prototype\Scripts\Tasks\RedrawTasksPresenter.cs" initialLine="83" containingFunctionPresentation="method 'OnRedrawTasks'">
             <startOffsets>
-              <option value="752" />
+              <option value="3064" />
             </startOffsets>
             <endOffsets>
-              <option value="753" />
+              <option value="3130" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Prototype/Scripts/Random/SetRandomLayersPresenter.cs</url>
-          <line>38</line>
-          <properties documentPath="C:\Nikolay\Unity C#\Repositories\Schedule-widget\Assets\Prototype\Scripts\Random\SetRandomLayersPresenter.cs" initialLine="38" containingFunctionPresentation="method 'OnSetRandomLayers'">
-            <startOffsets>
-              <option value="1175" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1176" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
