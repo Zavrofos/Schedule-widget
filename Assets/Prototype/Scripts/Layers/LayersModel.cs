@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Prototype.Scripts.avl_tree_c_sharp_master.Bitlush.AvlTree;
 
 namespace Prototype.Scripts.Layers
 {
     public class LayersModel
     {
         public Pool<LayerWindow> PoolLayerWindows;
-        
-        public List<Layer> Layers;
+
+        public Layer PreviousLayer;
+        public AvlNode<float, Layer> MinNode;
+
+        // public List<Layer> Layers;
+        public AvlTree<float, Layer> Layers;
         public Dictionary<Layer, LayerWindow> IncludedLayers;
         
         public event Action AddedLayer;
@@ -15,7 +20,8 @@ namespace Prototype.Scripts.Layers
 
         public LayersModel()
         {
-            Layers = new List<Layer>();
+            // Layers = new List<Layer>();
+            Layers = new AvlTree<float, Layer>();
             IncludedLayers = new Dictionary<Layer, LayerWindow>();
         }
 

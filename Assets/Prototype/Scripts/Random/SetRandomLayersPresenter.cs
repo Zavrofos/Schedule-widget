@@ -32,7 +32,8 @@ namespace Prototype.Scripts.Random
             for (int i = 0; i < countRandomLayers; i++)
             {
                 _model.LayersModel.Addlayer();
-                Layer newLayer = _model.LayersModel.Layers[_model.LayersModel.Layers.Count - 1];
+                Layer newLayer = _model.LayersModel.PreviousLayer;
+                float key = _model.LayersModel.Layers.Root.Key;
                 _model.RandomizeModel.RandomFillLayer(newLayer, countRandomTask);
             }
         }

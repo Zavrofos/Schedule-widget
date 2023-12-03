@@ -29,19 +29,19 @@ namespace Prototype.Scripts.Random
         private void OnGenerate()
         {
             List<Layer> layersToRemove = new List<Layer>();
-            foreach (var layer in _model.LayersModel.Layers)
+            foreach (var node in _model.LayersModel.Layers)
             {
                 List<Task> tasksToRemove = new List<Task>();
-                foreach (var task in layer.Tasks)
+                foreach (var task in node.Value.Tasks)
                 {
                     tasksToRemove.Add(task);
                 }
                 foreach (var task in tasksToRemove)
                 {
-                    layer.RemoveTask(task);
+                    node.Value.RemoveTask(task);
                 }
                 
-                layersToRemove.Add(layer);
+                layersToRemove.Add(node.Value);
             }
             foreach (var layer in layersToRemove)
             {

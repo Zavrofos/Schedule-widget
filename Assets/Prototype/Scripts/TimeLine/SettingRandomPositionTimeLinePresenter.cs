@@ -30,9 +30,9 @@ namespace Prototype.Scripts.TimeLine
             _view.TimeLine.anchoredPosition = new Vector2(UnityEngine.Random.Range(0, sizeX), 0);
             _model.TimeLineModel.CurrentPositinX = _view.TimeLine.anchoredPosition.x;
             
-            foreach (var layer in _model.LayersModel.Layers)
+            foreach (var node in _model.LayersModel.Layers)
             {
-                layer.SetStateTasks();
+                node.Value.SetStateTasks();
             }
 
             _view.PendingCountText.text = _model.TasksStatusModel.PendingCount.ToString();

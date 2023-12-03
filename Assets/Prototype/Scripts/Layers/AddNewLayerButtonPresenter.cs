@@ -24,7 +24,7 @@
         private void OnAddNewLayer()
         {
             _model.LayersModel.Addlayer();
-            Layer newLayer = _model.LayersModel.Layers[_model.LayersModel.Layers.Count - 1];
+            Layer newLayer = _model.LayersModel.PreviousLayer;
 
             float countTasks = 0;
             string text = "";

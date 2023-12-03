@@ -31,20 +31,21 @@ namespace Prototype.Scripts.Layers
         private void OnAddNewLayer()
         {
             float initialPositionLayer;
-            if (_model.LayersModel.Layers.Count == 0)
+            if (_model.LayersModel.Layers.Root == null)
             {
                 initialPositionLayer = 0;
             }
             else
             {
-                initialPositionLayer = _model.LayersModel.Layers[_model.LayersModel.Layers.Count - 1].InitialPosition +
+                initialPositionLayer = _model.LayersModel.PreviousLayer.InitialPosition +
                                        _view.LayerWindowPrefab.RectTransform.sizeDelta.y;
             }
             
             _model.WorkZoneModel.ChangeContentSizeY(_model.WorkZoneModel.contentSizeY + _view.LayerWindowPrefab.RectTransform.sizeDelta.y);
             
             Layer newLayer = new Layer(initialPositionLayer);
-            _model.LayersModel.Layers.Add(newLayer);
+            _model.LayersModel.PreviousLayer = newLayer;
+            _model.LayersModel.Layers.Insert(initialPositionLayer, newLayer);
 
             List<IPresenter> presenters = new List<IPresenter>()
             {
@@ -76,7 +77,7 @@ namespace Prototype.Scripts.Layers
                 _model.LayersModel.IncludedLayers.Remove(layer);
             }
             
-            _model.LayersModel.Layers.Remove(layer);
+            _model.LayersModel.Layers.Delete(layer.InitialPosition);
         }
     }
 }
