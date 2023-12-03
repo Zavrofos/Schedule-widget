@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Prototype.Scripts.Layers
+namespace Prototype.Scripts
 {
     public class CheckPositionContentScrollUpdater : IUpdater
     {
@@ -19,18 +19,18 @@ namespace Prototype.Scripts.Layers
 
         public void Update(float deltaTime)
         {
-            if (Mathf.Abs(_currentPositionContentVertical - _view.ScrollContent.anchoredPosition.y) > 100)
+            if (Mathf.Abs(_currentPositionContentVertical - _view.WorkZoneScrollContent.anchoredPosition.y) > 100)
             {
                 _model.VirtualizationModel.ChangeContentScrollPositionVertical();
-                _currentPositionContentVertical = _view.ScrollContent.anchoredPosition.y -
-                                                  _view.ScrollContent.anchoredPosition.y % 100;
+                _currentPositionContentVertical = _view.WorkZoneScrollContent.anchoredPosition.y -
+                                                  _view.WorkZoneScrollContent.anchoredPosition.y % 100;
             }
 
-            if (Mathf.Abs(_currentLeftBoardValue - Mathf.Abs(_view.ScrollContent.anchoredPosition.x)) > 100)
+            if (Mathf.Abs(_currentLeftBoardValue - Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x)) > 100)
             {
                 _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();
-                _currentLeftBoardValue = Mathf.Abs(_view.ScrollContent.anchoredPosition.x) -
-                                         Mathf.Abs(_view.ScrollContent.anchoredPosition.x) % 100;
+                _currentLeftBoardValue = Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x) -
+                                         Mathf.Abs(_view.WorkZoneScrollContent.anchoredPosition.x) % 100;
             }
         }
     }
