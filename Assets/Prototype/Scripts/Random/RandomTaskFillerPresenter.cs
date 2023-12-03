@@ -33,7 +33,7 @@ namespace Prototype.Scripts.Random
                 
                 if (layer.Tasks.Count == 0)
                 {
-                    startTime = 0;
+                    startTime = UnityEngine.Random.Range(0, 300);
                 }
                 else
                 {
