@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Prototype.Scripts.Layers.Tasks;
+using Prototype.Scripts.Tasks;
 
 namespace Prototype.Scripts.Layers
 {
@@ -15,6 +15,7 @@ namespace Prototype.Scripts.Layers
         public event Action TurnedOff;
         public event Action<int, int> AddedTask;
         public event Action<Task> RemovedTask;
+        public event Action SettedStateTasks;
 
         public Layer(float initialPosition)
         {
@@ -42,6 +43,11 @@ namespace Prototype.Scripts.Layers
         public void RemoveTask(Task task)
         {
             RemovedTask?.Invoke(task);
+        }
+
+        public void SetStateTasks()
+        {
+            SettedStateTasks?.Invoke();
         }
     }
 }

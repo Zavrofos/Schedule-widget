@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Prototype.Scripts.Layers.Tasks;
+using Prototype.Scripts.Tasks;
 using UnityEngine;
 
 namespace Prototype.Scripts.Layers

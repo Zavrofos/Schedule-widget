@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Prototype.Scripts.Layers.Tasks;
+using Prototype.Scripts.Tasks;
 
 namespace Prototype.Scripts.Layers
 {
@@ -40,6 +40,9 @@ namespace Prototype.Scripts.Layers
                 initialPositionLayer = _model.LayersModel.Layers[_model.LayersModel.Layers.Count - 1].InitialPosition +
                                        _view.LayerWindowPrefab.RectTransform.sizeDelta.y;
             }
+            
+            _model.WorkZoneModel.ChangeContentSizeY(_model.WorkZoneModel.contentSizeY + _view.LayerWindowPrefab.RectTransform.sizeDelta.y);
+            
             Layer newLayer = new Layer(initialPositionLayer);
             _model.LayersModel.Layers.Add(newLayer);
 
@@ -47,7 +50,8 @@ namespace Prototype.Scripts.Layers
             {
                 new TurningOnLayerPresenter(_model, newLayer, _view),
                 new TurningOffLayerPresenter(_model, newLayer, _view),
-                new AddingTasksPresenter(_model, newLayer, _view)
+                new AddingTasksPresenter(_model, newLayer, _view),
+                new SettingStateTasksInLayerPresenter(_model, newLayer, _view)
             };
 
             foreach (var presenter in presenters)
