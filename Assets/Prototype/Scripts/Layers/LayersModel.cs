@@ -10,8 +10,7 @@ namespace Prototype.Scripts.Layers
 
         public Layer PreviousLayer;
         public AvlNode<float, Layer> MinNode;
-
-        // public List<Layer> Layers;
+        
         public AvlTree<float, Layer> Layers;
         public Dictionary<Layer, LayerWindow> IncludedLayers;
         
@@ -20,7 +19,6 @@ namespace Prototype.Scripts.Layers
 
         public LayersModel()
         {
-            // Layers = new List<Layer>();
             Layers = new AvlTree<float, Layer>();
             IncludedLayers = new Dictionary<Layer, LayerWindow>();
         }

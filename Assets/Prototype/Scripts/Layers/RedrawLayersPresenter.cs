@@ -26,27 +26,6 @@ namespace Prototype.Scripts.Layers
 
         private void OnRedrawLayers()
         {
-            // foreach (var layer in _model.LayersModel.Layers)
-            // {
-            //     if ((layer.InitialPosition + 200 + 100) > _view.WorkZoneScrollContent.anchoredPosition.y &&
-            //         (_view.WorkZoneScrollContent.anchoredPosition.y + 1000) > layer.InitialPosition)
-            //     {
-            //         if (!layer.IsActive)
-            //         {
-            //             layer.TurnOn();
-            //         }
-            //     }
-            //     else
-            //     {
-            //         if (layer.IsActive)
-            //         {
-            //             layer.TurnOff();
-            //         }
-            //     }
-            // }
-
-            // попытка
-
             List<Layer> layersToTurnOff = new List<Layer>();
             foreach (var layer in _model.LayersModel.IncludedLayers.Keys)
             {
@@ -56,12 +35,12 @@ namespace Prototype.Scripts.Layers
             {
                 layer.TurnOff();
             }
-
+            
             float downCount = 3;
             float upCount = 10;
             float currentPositionY = _view.WorkZoneScrollContent.anchoredPosition.y;
             float positionY = 100 - (currentPositionY % 100) + currentPositionY;
-
+            
             float posYDown = positionY;
             for (int i = 0; i < downCount; i++)
             {
@@ -73,10 +52,10 @@ namespace Prototype.Scripts.Layers
                         layer.TurnOn();
                     }
                 }
-
+            
                 posYDown -= 100;
             }
-
+            
             float posYUp = positionY;
             for (int i = 0; i < upCount; i++)
             {
@@ -88,12 +67,9 @@ namespace Prototype.Scripts.Layers
                         layer.TurnOn();
                     }
                 }
-
+            
                 posYUp += 100;
             }
-            
-            
-            // попытка
             
             _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();
         }
