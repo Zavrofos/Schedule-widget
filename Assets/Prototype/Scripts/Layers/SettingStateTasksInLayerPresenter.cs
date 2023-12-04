@@ -29,25 +29,25 @@ namespace Prototype.Scripts.Layers
         {
             foreach (var task in _layer.Tasks)
             {
-                if (task.EndTime < _model.TimeLineModel.CurrentPositinX)
+                if (task.Value.EndTime < _model.TimeLineModel.CurrentPositinX)
                 {
                     int completedChance = UnityEngine.Random.Range(90, 100);
                     int jeopardyChance = UnityEngine.Random.Range(0, 100);
             
                     if (jeopardyChance > completedChance)
                     {
-                        task.CurrentState = StateTask.Jeopardy;
+                        task.Value.CurrentState = StateTask.Jeopardy;
                         _model.TasksStatusModel.JeopardyCount++;
                     }
                     else
                     {
-                        task.CurrentState = StateTask.Completed;
+                        task.Value.CurrentState = StateTask.Completed;
                         _model.TasksStatusModel.CompletedCount++;
                     }
                 }
                 else
                 {
-                    task.CurrentState = StateTask.Pending;
+                    task.Value.CurrentState = StateTask.Pending;
                     _model.TasksStatusModel.PendingCount++;
                 }
             }

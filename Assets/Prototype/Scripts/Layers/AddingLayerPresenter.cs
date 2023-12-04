@@ -31,10 +31,6 @@ namespace Prototype.Scripts.Layers
         private void OnAddNewLayer()
         {
             float initialPositionLayer;
-            // if (_model.LayersModel.Layers.Count == 0)
-            // {
-            //     initialPositionLayer = 0;
-            // }
             if (_model.LayersModel.Layers.Root == null)
             {
                 initialPositionLayer = 0;
@@ -48,7 +44,6 @@ namespace Prototype.Scripts.Layers
             _model.WorkZoneModel.ChangeContentSizeY(_model.WorkZoneModel.contentSizeY + _view.LayerWindowPrefab.RectTransform.sizeDelta.y);
             
             Layer newLayer = new Layer(initialPositionLayer);
-            // _model.LayersModel.LayersPositions.Add(initialPositionLayer);
             _model.LayersModel.PreviousLayer = newLayer;
             _model.LayersModel.Layers.Add(initialPositionLayer, newLayer);
 
@@ -82,7 +77,6 @@ namespace Prototype.Scripts.Layers
                 _model.LayersModel.IncludedLayers.Remove(layer);
             }
             
-            // _model.LayersModel.Layers.Remove(layer);
             _model.LayersModel.Layers.Delete(layer.InitialPosition);
         }
     }

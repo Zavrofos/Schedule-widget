@@ -34,7 +34,7 @@ namespace Prototype.Scripts.Random
                 List<Task> tasksToRemove = new List<Task>();
                 foreach (var task in layer.Value.Tasks)
                 {
-                    tasksToRemove.Add(task);
+                    tasksToRemove.Add(task.Value);
                 }
                 foreach (var task in tasksToRemove)
                 {
@@ -67,7 +67,6 @@ namespace Prototype.Scripts.Random
                 GameObject.Destroy(partOfTimeScale.gameObject);
             }
             
-            // _model.LayersModel.LayersPositions.Clear();
             _model.TimeScaleModel.PartsOfTimeScale.Clear();
 
             _view.WorkZoneScrollContent.sizeDelta = _model.WorkZoneModel.InitialSize;

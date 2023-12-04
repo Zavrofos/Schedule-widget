@@ -34,6 +34,7 @@ namespace Prototype.Scripts.Tasks
         private void OnAddTask(int startTime, int endTime)
         {
             Task newTask = new Task(startTime, endTime);
+            _layer.PreviousTask = newTask;
 
             if (endTime - 1700 > _model.WorkZoneModel.contentSizeX)
             {
@@ -53,8 +54,7 @@ namespace Prototype.Scripts.Tasks
             
             TasksPresenters.Add(newTask, presenters);
             
-            _layer.Tasks.Add(newTask);
-            _layer.TasksPositions.Add((startTime, endTime));
+            _layer.Tasks.Add(newTask.StartTime, newTask);
         }
 
         private void OnRemoveTask(Task task)
@@ -71,7 +71,7 @@ namespace Prototype.Scripts.Tasks
                 _layer.IncludedTasks.Remove(task);
             }
 
-            _layer.Tasks.Remove(task);
+            _layer.Tasks.Delete(task.StartTime);
         }
     }
 }

@@ -26,17 +26,13 @@ namespace Prototype.Scripts.Tree
         {
             _tree.Delete(key);
         }
-
-        public void Search(TKey key, out TValue value)
-        {
-            _tree.Search(key, out value);
-        }
+        
 
         public List<TValue> GetValuesBetweenBoundaries(float minBoard, float maxBoard)
         {
             if (_tree.Root == null) return null;
             AvlNode<TKey, TValue> leftNode = GetLeftNode(minBoard);
-            AvlNode<TKey, TValue> rightNode = GetRightNode(maxBoard);
+            AvlNode<TKey, TValue> rightNode = GetLeftNode(maxBoard);
 
             return GetValueBetweenNodes(leftNode, rightNode);
         }
@@ -70,44 +66,6 @@ namespace Prototype.Scripts.Tree
 
             return result;
         }
-        private AvlNode<TKey, TValue> GetRightNode(float maxBoard)
-        {
-            AvlNode<TKey, TValue> root = _tree.Root;
-            
-            if (root == null)
-            {
-                return null; 
-            }
-
-            AvlNode<TKey, TValue> result = null;
-
-            while (root != null)
-            {
-                if (root.Key.Equals(maxBoard))
-                {
-                    result = root;
-                    break;
-                }
-                
-                if (root.Key.CompareTo(maxBoard) < 0)
-                {
-                    
-                    root = root.Right;
-                }
-                else
-                {
-                    result = root;
-                    root = root.Left;
-                }
-            }
-
-            if (result == null)
-            {
-                result = GetLastRightNode();
-            }
-
-            return result;
-        }
         private AvlNode<TKey, TValue> GetLeftNode(float minBoard)
         {
             AvlNode<TKey, TValue> root = _tree.Root;
@@ -121,13 +79,15 @@ namespace Prototype.Scripts.Tree
 
             while (root != null)
             {
-                if (root.Key.Equals(minBoard))
+                var compareTo = root.Key.CompareTo(minBoard);
+                if (compareTo == 0)
                 {
                     result = root;
                     break;
                 }
+
                 
-                if (root.Key.CompareTo(minBoard) > 0)
+                if (compareTo > 0)
                 {
                     
                     root = root.Left;
@@ -153,17 +113,6 @@ namespace Prototype.Scripts.Tree
             while (currentNode.Left != null)
             {
                 currentNode = currentNode.Left;
-            }
-
-            return currentNode;
-        }
-        
-        private AvlNode<TKey, TValue> GetLastRightNode()
-        {
-            AvlNode<TKey, TValue> currentNode = Root;
-            while (currentNode.Right != null)
-            {
-                currentNode = currentNode.Right;
             }
 
             return currentNode;

@@ -31,13 +31,13 @@ namespace Prototype.Scripts.Random
                 int startTime;
                 int endTime;
                 
-                if (layer.Tasks.Count == 0)
+                if (layer.Tasks.Root == null)
                 {
                     startTime = UnityEngine.Random.Range(0, 300);
                 }
                 else
                 {
-                    int endTimeLastTask = layer.Tasks[layer.Tasks.Count - 1].EndTime;
+                    int endTimeLastTask = layer.PreviousTask.EndTime;
                     startTime = UnityEngine.Random.Range(endTimeLastTask + 50, endTimeLastTask + 350);
                 }
 

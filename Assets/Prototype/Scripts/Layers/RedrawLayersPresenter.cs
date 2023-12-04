@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Prototype.Scripts.avl_tree_c_sharp_master.Bitlush.AvlTree;
+using Prototype.Scripts.Tasks;
 
 namespace Prototype.Scripts.Layers
 {
@@ -26,25 +27,40 @@ namespace Prototype.Scripts.Layers
 
         private void OnRedrawLayers()
         {
-            List<Layer> layersToTurnOff = new List<Layer>();
-            foreach (var layer in _model.LayersModel.IncludedLayers.Keys)
-            {
-                layersToTurnOff.Add(layer);
-            }
-            foreach (var layer in layersToTurnOff)
-            {
-                layer.TurnOff();
-            }
+            // List<Layer> layersToTurnOff = new List<Layer>();
+            // foreach (var layer in _model.LayersModel.IncludedLayers.Keys)
+            // {
+            //     layersToTurnOff.Add(layer);
+            // }
+            // foreach (var layer in layersToTurnOff)
+            // {
+            //     layer.TurnOff();
+            // }
+
+            
             
             float positionY = _view.WorkZoneScrollContent.anchoredPosition.y;
             float upBoard = positionY - 300;
             float downBoard = positionY + 1000;
 
+            var toRemove = new HashSet<Layer>(_model.LayersModel.IncludedLayers.Keys);
             List<Layer> layerToTurnOn = _model.LayersModel.Layers.GetValuesBetweenBoundaries(upBoard, downBoard);
 
             foreach (var layer in layerToTurnOn)
             {
-                layer.TurnOn();
+                if (layer.IsActive)
+                {
+                    toRemove.Remove(layer);
+                }
+                else
+                {
+                    layer.TurnOn();
+                }
+            }
+
+            foreach (var layer in toRemove)
+            {
+                layer.TurnOff();
             }
             
             _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();

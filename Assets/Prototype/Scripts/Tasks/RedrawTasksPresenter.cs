@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Prototype.Scripts.Layers;
 using UnityEngine;
 
@@ -27,32 +28,44 @@ namespace Prototype.Scripts.Tasks
 
         private void OnRedrawTasks()
         {
-            List<(Task, Layer)> tasksToTurnOff = new List<(Task, Layer)>();
-            foreach (var includedLayer in _model.LayersModel.IncludedLayers.Keys)
-            {
-                foreach (var includedTask in includedLayer.IncludedTasks.Keys)
-                {
-                    tasksToTurnOff.Add((includedTask, includedLayer));
-                }
-            }
-            foreach (var task in tasksToTurnOff)
-            {
-                task.Item1.TurnOff(task.Item2);
-            }
+            // List<(Task, Layer)> tasksToTurnOff = new List<(Task, Layer)>();
+            // foreach (var includedLayer in _model.LayersModel.IncludedLayers.Keys)
+            // {
+            //     foreach (var includedTask in includedLayer.IncludedTasks.Keys)
+            //     {
+            //         tasksToTurnOff.Add((includedTask, includedLayer));
+            //     }
+            // }
+            // foreach (var task in tasksToTurnOff)
+            // {
+            //     task.Item1.TurnOff(task.Item2);
+            // }
             
             
             float positionX = -_view.WorkZoneScrollContent.anchoredPosition.x;
             float leftBoard = positionX - 200;
-            float rightBoard = positionX + 2000;
-
+            float rightBoard = positionX + 1800;
+            
             foreach (var layer in _model.LayersModel.IncludedLayers.Keys)
             {
-                int leftBoardTaskPositionIndex = layer.GetLeftBoardTaskPosition(leftBoard);
-                int rightBoardTaskPositionIndex = layer.GetRightBoardTaskPosition(rightBoard);
-
-                for (int i = leftBoardTaskPositionIndex; i <= rightBoardTaskPositionIndex; i++)
+                
+                var toRemove = new HashSet<Task>(layer.IncludedTasks.Keys);
+                List<Task> tasks = layer.Tasks.GetValuesBetweenBoundaries(leftBoard, rightBoard);
+                foreach (var task in tasks)
                 {
-                    layer.Tasks[i].TurnOn(layer);
+                    if (task.IsActive)
+                    {
+                        toRemove.Remove(task);
+                    }
+                    else
+                    {
+                        task.TurnOn(layer);
+                    }
+                }
+
+                foreach (var task in toRemove)
+                {
+                    task.TurnOff(layer);
                 }
             }
         }
