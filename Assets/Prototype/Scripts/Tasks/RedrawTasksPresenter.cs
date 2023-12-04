@@ -8,22 +8,24 @@ namespace Prototype.Scripts.Tasks
     public class RedrawTasksPresenter : IPresenter
     {
         private readonly Model _model;
+        private readonly Layer _layer;
         private readonly View _view;
 
-        public RedrawTasksPresenter(Model model, View view)
+        public RedrawTasksPresenter(Model model, Layer layer, View view)
         {
             _model = model;
+            _layer = layer;
             _view = view;
         }
-        
+
         public void Subscribe()
         {
-            _model.VirtualizationModel.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
+            _layer.TurnedOn += OnRedrawTasks;
         }
 
         public void Unsubscribe()
         {
-            _model.VirtualizationModel.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
+            _layer.TurnedOn -= OnRedrawTasks;
         }
 
         private void OnRedrawTasks()
@@ -32,27 +34,23 @@ namespace Prototype.Scripts.Tasks
             float leftBoard = positionX - 200;
             float rightBoard = positionX + 1800;
             
-            foreach (var layer in _model.LayersModel.IncludedLayers.Keys)
+            var toRemove = new HashSet<Task>(_layer.IncludedTasks.Keys);
+            List<Task> tasks = _layer.Tasks.GetValuesBetweenBoundaries(leftBoard, rightBoard);
+            foreach (var task in tasks)
             {
-                
-                var toRemove = new HashSet<Task>(layer.IncludedTasks.Keys);
-                List<Task> tasks = layer.Tasks.GetValuesBetweenBoundaries(leftBoard, rightBoard);
-                foreach (var task in tasks)
+                if (task.IsActive)
                 {
-                    if (task.IsActive)
-                    {
-                        toRemove.Remove(task);
-                    }
-                    else
-                    {
-                        task.TurnOn(layer);
-                    }
+                    toRemove.Remove(task);
                 }
+                else
+                {
+                    task.TurnOn(_layer);
+                }
+            }
 
-                foreach (var task in toRemove)
-                {
-                    task.TurnOff(layer);
-                }
+            foreach (var task in toRemove)
+            {
+                task.TurnOff(_layer);
             }
         }
     }

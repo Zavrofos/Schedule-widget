@@ -30,7 +30,6 @@ namespace Prototype.Scripts
                 new AddingLayerPresenter(Model, View),
                 new SetRandomLayersPresenter(Model, View),
                 new RedrawLayersPresenter(Model, View),
-                new RedrawTasksPresenter(Model, View),
                 new AddNewLayerButtonPresenter(Model, View),
                 new RandomTaskFillerPresenter(Model, View),
                 
