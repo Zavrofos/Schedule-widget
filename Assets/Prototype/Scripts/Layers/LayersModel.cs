@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Prototype.Scripts.avl_tree_c_sharp_master.Bitlush.AvlTree;
+using Prototype.Scripts.Tree;
 
 namespace Prototype.Scripts.Layers
 {
     public class LayersModel
     {
         public Pool<LayerWindow> PoolLayerWindows;
-
         public Layer PreviousLayer;
-
-        public List<Layer> Layers;
-        public List<float> LayersPositions;
+        public BinaryTree<float, Layer> Layers;
         public Dictionary<Layer, LayerWindow> IncludedLayers;
         
         public event Action AddedLayer;
@@ -19,8 +17,7 @@ namespace Prototype.Scripts.Layers
         
         public LayersModel()
         {
-            Layers = new List<Layer>();
-            LayersPositions = new List<float>();
+            Layers = new BinaryTree<float, Layer>();
             IncludedLayers = new Dictionary<Layer, LayerWindow>();
         }
 
@@ -32,51 +29,6 @@ namespace Prototype.Scripts.Layers
         public void RemoveLayer(Layer layer)
         {
             RemovedLayer?.Invoke(layer);
-        }
-
-
-        public int GetUpBoardLayerPosition(float upBoard)
-        {
-            int left = 0;
-            int right = LayersPositions.Count;
-
-            while (left < right)
-            {
-                int mid = left + (right - left) / 2;
-
-                if (LayersPositions[mid] < upBoard)
-                {
-                    left = mid + 1;
-                }
-                else
-                {
-                    right = mid;
-                }
-            }
-
-            return left;
-        }
-
-        public int GetDownBoardLayerPosition(float downBoard)
-        {
-            int left = 0;
-            int right = LayersPositions.Count;
-
-            while (left < right)
-            {
-                int mid = left + (right - left) / 2;
-
-                if (LayersPositions[mid] <= downBoard)
-                {
-                    left = mid + 1;
-                }
-                else
-                {
-                    right = mid;
-                }
-            }
-
-            return left - 1;
         }
     }
 }

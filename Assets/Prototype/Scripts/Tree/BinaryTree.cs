@@ -5,9 +5,12 @@ using Prototype.Scripts.avl_tree_c_sharp_master.Bitlush.AvlTree;
 
 namespace Prototype.Scripts.Tree
 {
-    public class BinaryTree<TKey, TValue> where TKey : IComparable
+    public class BinaryTree<TKey, TValue> : IEnumerable<AvlNode<TKey, TValue>>
+    where TKey : IComparable
+        
     {
         private readonly AvlTree<TKey, TValue> _tree;
+        public AvlNode<TKey, TValue> Root => _tree.Root;
 
         public BinaryTree()
         {
@@ -24,6 +27,11 @@ namespace Prototype.Scripts.Tree
             _tree.Delete(key);
         }
 
+        public void Search(TKey key, out TValue value)
+        {
+            _tree.Search(key, out value);
+        }
+
         public List<TValue> GetValuesBetweenBoundaries(float minBoard, float maxBoard)
         {
             if (_tree.Root == null) return null;
@@ -38,8 +46,8 @@ namespace Prototype.Scripts.Tree
             List<TValue> result = new List<TValue>();
             
             Stack<AvlNode<TKey, TValue>> stack = new Stack<AvlNode<TKey, TValue>>();
-            stack.Push(leftNode);
-            
+
+            stack.Push(Root);
             while (stack.Count > 0)
             {
                 AvlNode<TKey, TValue> current = stack.Pop();
@@ -95,7 +103,7 @@ namespace Prototype.Scripts.Tree
 
             if (result == null)
             {
-                // вернуть самую последнюю ноду 
+                result = GetLastRightNode();
             }
 
             return result;
@@ -130,12 +138,45 @@ namespace Prototype.Scripts.Tree
                     root = root.Right;
                 }
             }
-            
+
             if (result == null)
             {
-                // вернуть самую первую ноду 
+                result = GetLastLeftNode();
             }
+
             return result;
+        }
+
+        private AvlNode<TKey, TValue> GetLastLeftNode()
+        {
+            AvlNode<TKey, TValue> currentNode = Root;
+            while (currentNode.Left != null)
+            {
+                currentNode = currentNode.Left;
+            }
+
+            return currentNode;
+        }
+        
+        private AvlNode<TKey, TValue> GetLastRightNode()
+        {
+            AvlNode<TKey, TValue> currentNode = Root;
+            while (currentNode.Right != null)
+            {
+                currentNode = currentNode.Right;
+            }
+
+            return currentNode;
+        }
+        
+        public IEnumerator<AvlNode<TKey, TValue>> GetEnumerator()
+        {
+            return _tree.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

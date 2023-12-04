@@ -39,13 +39,12 @@ namespace Prototype.Scripts.Layers
             float positionY = _view.WorkZoneScrollContent.anchoredPosition.y;
             float upBoard = positionY - 300;
             float downBoard = positionY + 1000;
-            
-            int upBoardLayerPositionIndex = _model.LayersModel.GetUpBoardLayerPosition(upBoard);
-            int downBoardLayerPositionIndex = _model.LayersModel.GetDownBoardLayerPosition(downBoard);
 
-            for (int i = upBoardLayerPositionIndex; i <= downBoardLayerPositionIndex; i++)
+            List<Layer> layerToTurnOn = _model.LayersModel.Layers.GetValuesBetweenBoundaries(upBoard, downBoard);
+
+            foreach (var layer in layerToTurnOn)
             {
-                _model.LayersModel.Layers[i].TurnOn();
+                layer.TurnOn();
             }
             
             _model.VirtualizationModel.ChangeContentScrollPositionHorizontal();
