@@ -34,6 +34,11 @@ namespace Prototype.Scripts.Layers
             var toRemove = new HashSet<Layer>(_model.LayersModel.IncludedLayers.Keys);
             List<Layer> layerToTurnOn = _model.LayersModel.Layers.GetValuesBetweenBoundaries(upBoard, downBoard);
 
+            if (layerToTurnOn == null)
+            {
+                layerToTurnOn = new List<Layer>();
+            }
+
             foreach (var layer in layerToTurnOn)
             {
                 if (layer.IsActive)
