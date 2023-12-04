@@ -32,11 +32,10 @@ namespace Prototype.Scripts
                 new RedrawLayersPresenter(Model, View),
                 new AddNewLayerButtonPresenter(Model, View),
                 new RandomTaskFillerPresenter(Model, View),
-                
+                new RedrawTasksPresenter(Model, View),
                 new SetContentWorkZoneSizePresenter(Model, View),
                 new SetTimeLineContentSizePresenter(Model, View),
                 new SetTimeScaleContentSizeXPresenter(Model, View),
-                
                 new InitializeTimeScalePresenter(Model, View),
                 new AddingPartOfTimeScalePresenter(Model, View),
                 

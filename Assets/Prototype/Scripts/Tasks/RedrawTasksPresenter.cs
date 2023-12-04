@@ -8,24 +8,23 @@ namespace Prototype.Scripts.Tasks
     public class RedrawTasksPresenter : IPresenter
     {
         private readonly Model _model;
-        private readonly Layer _layer;
+        
         private readonly View _view;
 
-        public RedrawTasksPresenter(Model model, Layer layer, View view)
+        public RedrawTasksPresenter(Model model, View view)
         {
             _model = model;
-            _layer = layer;
             _view = view;
         }
 
         public void Subscribe()
         {
-            _layer.TurnedOn += OnRedrawTasks;
+            _model.VirtualizationModel.ContentScrollPositionChangedHorizontal += OnRedrawTasks;
         }
 
         public void Unsubscribe()
         {
-            _layer.TurnedOn -= OnRedrawTasks;
+            _model.VirtualizationModel.ContentScrollPositionChangedHorizontal -= OnRedrawTasks;
         }
 
         private void OnRedrawTasks()
@@ -33,24 +32,28 @@ namespace Prototype.Scripts.Tasks
             float positionX = -_view.WorkZoneScrollContent.anchoredPosition.x;
             float leftBoard = positionX - 200;
             float rightBoard = positionX + 1800;
-            
-            var toRemove = new HashSet<Task>(_layer.IncludedTasks.Keys);
-            List<Task> tasks = _layer.Tasks.GetValuesBetweenBoundaries(leftBoard, rightBoard);
-            foreach (var task in tasks)
-            {
-                if (task.IsActive)
-                {
-                    toRemove.Remove(task);
-                }
-                else
-                {
-                    task.TurnOn(_layer);
-                }
-            }
 
-            foreach (var task in toRemove)
+
+            foreach (var includedLayer in _model.LayersModel.IncludedLayers.Keys)
             {
-                task.TurnOff(_layer);
+                var toRemove = new HashSet<Task>(includedLayer.IncludedTasks.Keys);
+                List<Task> tasks = includedLayer.Tasks.GetValuesBetweenBoundaries(leftBoard, rightBoard);
+                foreach (var task in tasks)
+                {
+                    if (task.IsActive)
+                    {
+                        toRemove.Remove(task);
+                    }
+                    else
+                    {
+                        task.TurnOn(includedLayer);
+                    }
+                }
+
+                foreach (var task in toRemove)
+                {
+                    task.TurnOff(includedLayer);
+                }
             }
         }
     }

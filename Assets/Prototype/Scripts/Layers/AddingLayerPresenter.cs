@@ -53,7 +53,6 @@ namespace Prototype.Scripts.Layers
                 new TurningOffLayerPresenter(_model, newLayer, _view),
                 new AddingTasksPresenter(_model, newLayer, _view),
                 new SettingStateTasksInLayerPresenter(_model, newLayer, _view),
-                new RedrawTasksPresenter(_model, newLayer, _view)
             };
 
             foreach (var presenter in presenters)
