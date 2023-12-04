@@ -28,20 +28,6 @@ namespace Prototype.Scripts.Tasks
 
         private void OnRedrawTasks()
         {
-            // List<(Task, Layer)> tasksToTurnOff = new List<(Task, Layer)>();
-            // foreach (var includedLayer in _model.LayersModel.IncludedLayers.Keys)
-            // {
-            //     foreach (var includedTask in includedLayer.IncludedTasks.Keys)
-            //     {
-            //         tasksToTurnOff.Add((includedTask, includedLayer));
-            //     }
-            // }
-            // foreach (var task in tasksToTurnOff)
-            // {
-            //     task.Item1.TurnOff(task.Item2);
-            // }
-            
-            
             float positionX = -_view.WorkZoneScrollContent.anchoredPosition.x;
             float leftBoard = positionX - 200;
             float rightBoard = positionX + 1800;

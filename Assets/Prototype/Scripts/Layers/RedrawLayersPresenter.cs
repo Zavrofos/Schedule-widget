@@ -27,18 +27,6 @@ namespace Prototype.Scripts.Layers
 
         private void OnRedrawLayers()
         {
-            // List<Layer> layersToTurnOff = new List<Layer>();
-            // foreach (var layer in _model.LayersModel.IncludedLayers.Keys)
-            // {
-            //     layersToTurnOff.Add(layer);
-            // }
-            // foreach (var layer in layersToTurnOff)
-            // {
-            //     layer.TurnOff();
-            // }
-
-            
-            
             float positionY = _view.WorkZoneScrollContent.anchoredPosition.y;
             float upBoard = positionY - 300;
             float downBoard = positionY + 1000;
