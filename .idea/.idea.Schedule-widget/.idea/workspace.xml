@@ -55,10 +55,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="11248">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="11248" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -81,7 +81,8 @@
       <workItem from="1701504228468" duration="32224000" />
       <workItem from="1701541845033" duration="4943000" />
       <workItem from="1701580052349" duration="4627000" />
-      <workItem from="1701586941891" duration="32183000" />
+      <workItem from="1701586941891" duration="33462000" />
+      <workItem from="1701681495659" duration="8159000" />
     </task>
     <servers />
   </component>
@@ -93,24 +94,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Prototype/Scripts/Tasks/RedrawTasksPresenter.cs</url>
-          <line>83</line>
-          <properties documentPath="C:\Nikolay\Unity C#\Repositories\Schedule-widget\Assets\Prototype\Scripts\Tasks\RedrawTasksPresenter.cs" initialLine="83" containingFunctionPresentation="method 'OnRedrawTasks'">
-            <startOffsets>
-              <option value="3064" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3130" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
