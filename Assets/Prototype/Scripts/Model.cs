@@ -16,7 +16,7 @@ namespace Prototype.Scripts
         public RandomizeModel RandomizeModel;
         public TimeScaleModel TimeScaleModel;
         public TimeLineModel TimeLineModel;
-        
+
         public event Action Initialized;
         
         public Model()

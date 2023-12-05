@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Prototype.Scripts.Tasks
 {
-    public class TurningOnTaskPresenter : IPresenter
+    public class TurningOnOffTaskPresenter : IPresenter
     {
         private readonly Model _model;
         private readonly Task _task;
         private readonly View _view;
 
-        public TurningOnTaskPresenter(Model model, Task task, View view)
+        public TurningOnOffTaskPresenter(Model model, Task task, View view)
         {
             _model = model;
             _task = task;
@@ -19,13 +19,15 @@ namespace Prototype.Scripts.Tasks
         public void Subscribe()
         {
             _task.TurnedOn += OnTurnOn;
+            _task.TurnedOff += OnTurnOff;
         }
 
         public void Unsubscribe()
         {
-            _task.TurnedOn += OnTurnOn;
+            _task.TurnedOn -= OnTurnOn;
+            _task.TurnedOff -= OnTurnOff;
         }
-
+        
         private void OnTurnOn(Layer parentLayer)
         {
             TaskWindow taskWindow = _model.LayersModel.IncludedLayers[parentLayer].PoolTaskWindows.GetFreeElement();
@@ -52,6 +54,15 @@ namespace Prototype.Scripts.Tasks
             parentLayer.IncludedTasks.Add(_task, taskWindow);
 
             _task.IsActive = true;
+        }
+        
+        private void OnTurnOff(Layer parentLayer)
+        {
+            parentLayer.IncludedTasks[_task].TaskRectTransform.sizeDelta = parentLayer.IncludedTasks[_task].InitialSize;
+            parentLayer.IncludedTasks[_task].TaskRectTransform.anchoredPosition = Vector2.zero;
+            parentLayer.IncludedTasks[_task].gameObject.SetActive(false);
+            _task.IsActive = false;
+            parentLayer.IncludedTasks.Remove(_task);
         }
     }
 }

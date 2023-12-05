@@ -36,15 +36,14 @@ namespace Prototype.Scripts.Tasks
             Task newTask = new Task(startTime, endTime);
             _layer.PreviousTask = newTask;
 
-            if (endTime - 1700 > _model.WorkZoneModel.contentSizeX)
+            if (endTime - _model.WorkZoneModel.RightBordermargin > _model.WorkZoneModel.contentSizeX)
             {
-                _model.WorkZoneModel.ChangeContentSizeX(endTime - 1700);
+                _model.WorkZoneModel.ChangeContentSizeX(endTime - _model.WorkZoneModel.RightBordermargin);
             }
 
             List<IPresenter> presenters = new List<IPresenter>()
             {
-                new TurningOnTaskPresenter(_model, newTask, _view),
-                new TurningOffTaskPresenter(_model, newTask, _view)
+                new TurningOnOffTaskPresenter(_model, newTask, _view),
             };
 
             foreach (var presenter in presenters)

@@ -30,8 +30,8 @@ namespace Prototype.Scripts.Tasks
         private void OnRedrawTasks()
         {
             float positionX = -_view.WorkZoneScrollContent.anchoredPosition.x;
-            float leftBoard = positionX - 200;
-            float rightBoard = positionX + 1800;
+            float leftBoard = positionX - _model.WorkZoneModel.LeftBorderMargin;
+            float rightBoard = positionX + _model.WorkZoneModel.RightBordermargin;
 
 
             foreach (var includedLayer in _model.LayersModel.IncludedLayers.Keys)

@@ -29,7 +29,7 @@ namespace Prototype.Scripts.TimeScaleDir
         
         private void OnAddPartOfTimeScale()
         {
-            PartOfTimeScale partOfTimeScale = new PartOfTimeScale(_model.TimeScaleModel.LastValueTime * 100);
+            PartOfTimeScale partOfTimeScale = new PartOfTimeScale(_model.TimeScaleModel.LastValueTime * _view.partOfTimeScaleWindowPrefab.PartOfTimeScaleTransform.sizeDelta.x);
             _model.TimeScaleModel.PartsOfTimeScale.Add(partOfTimeScale.Position, partOfTimeScale);
             _model.TimeScaleModel.LastValueTime++;
 

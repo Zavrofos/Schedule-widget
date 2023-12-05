@@ -33,6 +33,7 @@ namespace Prototype.Scripts
         
         public int CountLayerPool;
         public int CountTaskPool;
+        public int CountPartsOfTimeScalePool;
         public int MaxTasksInLayer;
     }
 }

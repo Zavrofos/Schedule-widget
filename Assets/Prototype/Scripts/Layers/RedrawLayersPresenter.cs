@@ -28,8 +28,8 @@ namespace Prototype.Scripts.Layers
         private void OnRedrawLayers()
         {
             float positionY = _view.WorkZoneScrollContent.anchoredPosition.y;
-            float upBoard = positionY - 300;
-            float downBoard = positionY + 1000;
+            float upBoard = positionY - _model.WorkZoneModel.UpBorderMargin;
+            float downBoard = positionY + _model.WorkZoneModel.DownBorderMargin;
 
             var toRemove = new HashSet<Layer>(_model.LayersModel.IncludedLayers.Keys);
             List<Layer> layerToTurnOn = _model.LayersModel.Layers.GetValuesBetweenBoundaries(upBoard, downBoard);

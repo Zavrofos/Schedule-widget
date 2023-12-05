@@ -55,7 +55,7 @@ namespace Prototype.Scripts.Random
                 foreach (var taskWindow in layerWindow.PoolTaskWindows.PoolObj)
                 {
                     taskWindow.TaskRectTransform.anchoredPosition = Vector2.zero;
-                    taskWindow.TaskRectTransform.sizeDelta = new Vector2(100, 80);
+                    taskWindow.TaskRectTransform.sizeDelta = taskWindow.InitialSize;
                     taskWindow.gameObject.SetActive(false);
                 }
                 layerWindow.RectTransform.anchoredPosition = Vector2.zero;

@@ -49,8 +49,7 @@ namespace Prototype.Scripts.Layers
 
             List<IPresenter> presenters = new List<IPresenter>()
             {
-                new TurningOnLayerPresenter(_model, newLayer, _view),
-                new TurningOffLayerPresenter(_model, newLayer, _view),
+                new TurningOnOffLayerPresenter(_model, newLayer, _view),
                 new AddingTasksPresenter(_model, newLayer, _view),
                 new SettingStateTasksInLayerPresenter(_model, newLayer, _view),
             };

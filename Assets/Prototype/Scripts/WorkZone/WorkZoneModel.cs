@@ -9,6 +9,11 @@ namespace Prototype.Scripts.WorkZone
         public float contentSizeY = 0;
 
         public Vector2 InitialSize;
+
+        public int UpBorderMargin { get; } = 300;
+        public int DownBorderMargin { get; } = 1000;
+        public int LeftBorderMargin { get; } = 200;
+        public int RightBordermargin { get; } = 1800;
         
         public event Action<float> ChangedContentSizeX;
         public event Action<float> ChangedContentSizeY;
