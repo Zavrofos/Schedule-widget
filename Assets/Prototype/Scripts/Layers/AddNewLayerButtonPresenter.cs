@@ -23,37 +23,30 @@
 
         private void OnAddNewLayer()
         {
-            _model.LayersModel.Addlayer();
-            Layer newLayer = _model.LayersModel.Layers[_model.LayersModel.Layers.Count - 1];
-
-            float countTasks = 0;
-            string text = "";
-            foreach (var ch in _view.CountElementsInNewLayerText.text)
+            int countTasks = 0;
+            if (int.TryParse(_view.CountElementsInNewLayerText.text, out countTasks))
             {
-                if (char.IsDigit(ch))
+                if (countTasks <= 0)
                 {
-                    text += ch;
+                    return;
                 }
-            }
-
-            if (float.TryParse(text, out countTasks))
-            {
+                
                 if (countTasks > _view.MaxTasksInLayer)
                 {
                     countTasks = _view.MaxTasksInLayer;
+                    _view.CountElementsInNewLayerText.text = _view.MaxTasksInLayer.ToString();
                 }
-                else if (countTasks <= 0)
-                {
-                    countTasks = 0;
-                }
+                
+                _model.LayersModel.Addlayer();
+                Layer newLayer = _model.LayersModel.Layers[_model.LayersModel.Layers.Count - 1];
+            
+                _model.RandomizeModel.RandomFillLayer(newLayer, (int)countTasks);
+                newLayer.SetStateTasks();
+            
+                _view.PendingCountText.text = _model.TasksStatusModel.PendingCount.ToString();
+                _view.JeopardyCountText.text = _model.TasksStatusModel.JeopardyCount.ToString();
+                _view.CompletedCountText.text = _model.TasksStatusModel.CompletedCount.ToString();
             }
-            
-            _model.RandomizeModel.RandomFillLayer(newLayer, (int)countTasks);
-            newLayer.SetStateTasks();
-            
-            _view.PendingCountText.text = _model.TasksStatusModel.PendingCount.ToString();
-            _view.JeopardyCountText.text = _model.TasksStatusModel.JeopardyCount.ToString();
-            _view.CompletedCountText.text = _model.TasksStatusModel.CompletedCount.ToString();
         }
     }
 }
