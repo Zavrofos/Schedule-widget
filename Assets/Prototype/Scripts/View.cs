@@ -16,7 +16,7 @@ namespace Prototype.Scripts
 
         public LayerWindow LayerWindowPrefab;
         public TaskWindow TaskWindowPrefab;
-        public PartOfTimeScale PartOfTimeScalePrefab;
+        [FormerlySerializedAs("partOfTimeScalePrefab")] [FormerlySerializedAs("PartOfTimeScalePrefab")] public PartOfTimeScaleWindow partOfTimeScaleWindowPrefab;
         public RectTransform TimeLine;
         public Button GenerateButton;
 

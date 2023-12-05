@@ -37,8 +37,9 @@ namespace Prototype.Scripts
                 new SetTimeLineContentSizePresenter(Model, View),
                 new SetTimeScaleContentSizeXPresenter(Model, View),
                 new InitializeTimeScalePresenter(Model, View),
+                new RedrawTimeScalePresenter(Model, View),
                 new AddingPartOfTimeScalePresenter(Model, View),
-                
+
                 new SettingRandomPositionTimeLinePresenter(Model, View),
                 new GeneratePresenter(Model, View)
             };

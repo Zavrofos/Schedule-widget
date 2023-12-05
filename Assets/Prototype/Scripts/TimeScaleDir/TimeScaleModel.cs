@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Prototype.Scripts.Tree;
 using UnityEngine;
 
 namespace Prototype.Scripts.TimeScaleDir
@@ -8,14 +9,19 @@ namespace Prototype.Scripts.TimeScaleDir
     {
         public int LastValueTime = 0;
         public Vector2 InitialSize;
-        public List<PartOfTimeScale> PartsOfTimeScale;
+        
+        public Pool<PartOfTimeScaleWindow> PartOfTimeScalePool;
+        public BinaryTree<float, PartOfTimeScale> PartsOfTimeScale;
+        public Dictionary<PartOfTimeScale, PartOfTimeScaleWindow> IncludedPartsOfTime;
         
         public event Action Initialized;
-        public event Action AddedpartOfTimeScale;
-
+        public event Action AddedPartOfTimeScale;
+        public event Action<PartOfTimeScale> RemovedPartOfTimeScale;
+        
         public TimeScaleModel()
         {
-            PartsOfTimeScale = new List<PartOfTimeScale>();
+            PartsOfTimeScale = new BinaryTree<float, PartOfTimeScale>();
+            IncludedPartsOfTime = new Dictionary<PartOfTimeScale, PartOfTimeScaleWindow>();
         }
         
         public void Initialize()
@@ -25,7 +31,12 @@ namespace Prototype.Scripts.TimeScaleDir
 
         public void AddPartOfTimeScale()
         {
-            AddedpartOfTimeScale?.Invoke();
+            AddedPartOfTimeScale?.Invoke();
+        }
+
+        public void RemovePartOfTimeScale(PartOfTimeScale partOfTimeScale)
+        {
+            RemovedPartOfTimeScale?.Invoke(partOfTimeScale);
         }
     }
 }

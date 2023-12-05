@@ -1,10 +1,28 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using System;
 
 namespace Prototype.Scripts.TimeScaleDir
 {
-    public class PartOfTimeScale : MonoBehaviour
+    public class PartOfTimeScale
     {
-        public TMP_Text PartOfTimeText;
+        public float Position;
+
+        public event Action TurnedOn;
+        public event Action TurnedOff;
+        public bool IsActive = false;
+
+        public PartOfTimeScale(float position)
+        {
+            Position = position;
+        }
+
+        public void TurnOn()
+        {
+            TurnedOn?.Invoke();
+        }
+
+        public void TurnOff()
+        {
+            TurnedOff?.Invoke();
+        }
     }
 }

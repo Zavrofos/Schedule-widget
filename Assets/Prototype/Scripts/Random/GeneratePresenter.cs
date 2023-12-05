@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Prototype.Scripts.Layers;
 using Prototype.Scripts.Tasks;
+using Prototype.Scripts.TimeScaleDir;
 using UnityEngine;
 
 namespace Prototype.Scripts.Random
@@ -62,13 +63,37 @@ namespace Prototype.Scripts.Random
             }
 
             
+            
             foreach (var partOfTimeScale in _model.TimeScaleModel.PartsOfTimeScale)
             {
-                GameObject.Destroy(partOfTimeScale.gameObject);
+                if (partOfTimeScale.Value.IsActive)
+                {
+                    partOfTimeScale.Value.TurnOff();
+                }
+            }
+
+            
+            List<PartOfTimeScale> partOfTimeScalesToRemove = new List<PartOfTimeScale>();
+            foreach (var node in _model.TimeScaleModel.PartsOfTimeScale)
+            {
+                partOfTimeScalesToRemove.Add(node.Value);
+            }
+
+            foreach (var partOfTimeScale in partOfTimeScalesToRemove)
+            {
+                _model.TimeScaleModel.RemovePartOfTimeScale(partOfTimeScale);
+            }
+
+            foreach (var partOfTimeScaleWindow in _model.TimeScaleModel.PartOfTimeScalePool.PoolObj)
+            {
+                if (partOfTimeScaleWindow.gameObject.activeInHierarchy)
+                {
+                    partOfTimeScaleWindow.PartOfTimeScaleTransform.anchoredPosition = Vector2.zero;
+                    partOfTimeScaleWindow.gameObject.SetActive(false);
+                }
             }
             
-            _model.TimeScaleModel.PartsOfTimeScale.Clear();
-
+            
             _view.WorkZoneScrollContent.sizeDelta = _model.WorkZoneModel.InitialSize;
             _view.TimeLineContent.sizeDelta = _model.TimeLineModel.InitialSize;
             _view.TimeScaleContent.sizeDelta = _model.TimeScaleModel.InitialSize;

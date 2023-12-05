@@ -25,6 +25,7 @@ namespace Prototype.Scripts.TimeScaleDir
 
         private void OnInitialize()
         {
+            _model.TimeScaleModel.PartOfTimeScalePool = new Pool<PartOfTimeScaleWindow>(_view.partOfTimeScaleWindowPrefab, _view.TimeScaleContent, 30);
             int countPartOfTimeScale = (int)((100 - (_view.TimeScaleContent.rect.size.x % 100)) + _view.TimeScaleContent.rect.size.x) / 100;
             
             for (int i = 0; i < countPartOfTimeScale; i++)
