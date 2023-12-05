@@ -1,2 +1,3 @@
 # Schedule-widget
-Schedule widget with virtualization 
+Расписание-виджет с виртуализацией. 
+Билды проекта с оптимизацией и без находятся по ссылке https://drive.google.com/file/d/1t-EHy6nFNiHdD6Na9pze7wVtTLwhuP3K/view?usp=sharing
