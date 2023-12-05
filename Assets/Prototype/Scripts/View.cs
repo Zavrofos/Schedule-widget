@@ -21,7 +21,7 @@ namespace Prototype.Scripts
         public Button GenerateButton;
 
         public Button AddNewLayerButton;
-        public TMP_Text CountElementsInNewLayerText;
+        public TMP_InputField CountElementsInNewLayerText;
 
         public Color PendingColorTask;
         public Color CompletedColorTask;

@@ -85,7 +85,7 @@
       <workItem from="1701580052349" duration="4627000" />
       <workItem from="1701586941891" duration="33462000" />
       <workItem from="1701681495659" duration="10169000" />
-      <workItem from="1701755246233" duration="8813000" />
+      <workItem from="1701755246233" duration="10874000" />
     </task>
     <servers />
   </component>
@@ -102,17 +102,30 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Prototype/Scripts/TimeScaleDir/RedrawTimeScalePresenter.cs</url>
-          <line>26</line>
-          <properties documentPath="C:\Nikolay\Unity C#\Repositories\Schedule-widget\Assets\Prototype\Scripts\TimeScaleDir\RedrawTimeScalePresenter.cs" initialLine="26" containingFunctionPresentation="method 'OnRedrawTimeScale'">
+          <url>file://$PROJECT_DIR$/Assets/Prototype/Scripts/Layers/AddNewLayerButtonPresenter.cs</url>
+          <line>24</line>
+          <properties documentPath="C:\Nikolay\Unity C#\Repositories\Schedule-widget\Assets\Prototype\Scripts\Layers\AddNewLayerButtonPresenter.cs" initialLine="24" containingFunctionPresentation="method 'OnAddNewLayer'">
             <startOffsets>
-              <option value="712" />
+              <option value="618" />
             </startOffsets>
             <endOffsets>
-              <option value="713" />
+              <option value="619" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Prototype/Scripts/Layers/AddNewLayerButtonPresenter.cs</url>
+          <line>38</line>
+          <properties documentPath="C:\Nikolay\Unity C#\Repositories\Schedule-widget\Assets\Prototype\Scripts\Layers\AddNewLayerButtonPresenter.cs" initialLine="38" containingFunctionPresentation="method 'OnAddNewLayer'">
+            <startOffsets>
+              <option value="1031" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1084" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
